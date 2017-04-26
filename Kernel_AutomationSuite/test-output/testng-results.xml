@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" ignored="0" total="14" passed="13">
+  <reporter-output>
+  </reporter-output>
+  <suite name="GoKernel Automation Suite" duration-ms="213515" started-at="2017-04-26T13:50:47Z" finished-at="2017-04-26T13:54:21Z">
+    <groups>
+    </groups>
+    <test name="Sign Up" duration-ms="126075" started-at="2017-04-26T13:50:47Z" finished-at="2017-04-26T13:52:53Z">
+      <class name="automationFramework.NewUserRegistrarionTest">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.NewUserRegistrarionTest@5a8806ef]" name="launchBrowser" is-config="true" duration-ms="34350" started-at="2017-04-26T19:20:47Z" finished-at="2017-04-26T19:21:22Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method status="PASS" signature="SignUpwithfieldsempty()[pri:2, instance:automationFramework.NewUserRegistrarionTest@5a8806ef]" name="SignUpwithfieldsempty" duration-ms="5380" started-at="2017-04-26T19:21:22Z" finished-at="2017-04-26T19:21:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpwithfieldsempty -->
+        <test-method status="PASS" signature="SignUpwithInvalidPassword()[pri:3, instance:automationFramework.NewUserRegistrarionTest@5a8806ef]" name="SignUpwithInvalidPassword" duration-ms="45544" started-at="2017-04-26T19:21:27Z" finished-at="2017-04-26T19:22:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpwithInvalidPassword -->
+        <test-method status="PASS" signature="SignUpwithInvalidEmail()[pri:4, instance:automationFramework.NewUserRegistrarionTest@5a8806ef]" name="SignUpwithInvalidEmail" duration-ms="40323" started-at="2017-04-26T19:22:13Z" finished-at="2017-04-26T19:22:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpwithInvalidEmail -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:automationFramework.NewUserRegistrarionTest@5a8806ef]" name="closeBrowser" is-config="true" duration-ms="382" started-at="2017-04-26T19:22:53Z" finished-at="2017-04-26T19:22:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- automationFramework.NewUserRegistrarionTest -->
+    </test> <!-- Sign Up -->
+    <test name="Sign in" duration-ms="57803" started-at="2017-04-26T13:52:54Z" finished-at="2017-04-26T13:53:51Z">
+      <class name="automationFramework.ExistingUserSignInTest">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="launchBrowser" is-config="true" duration-ms="16250" started-at="2017-04-26T19:22:54Z" finished-at="2017-04-26T19:23:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method status="PASS" signature="SigninwithInvalidEmailID()[pri:1, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="SigninwithInvalidEmailID" duration-ms="4527" started-at="2017-04-26T19:23:10Z" finished-at="2017-04-26T19:23:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SigninwithInvalidEmailID -->
+        <test-method status="PASS" signature="nonExistingUserLogin()[pri:2, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="nonExistingUserLogin" duration-ms="4366" started-at="2017-04-26T19:23:14Z" finished-at="2017-04-26T19:23:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- nonExistingUserLogin -->
+        <test-method status="PASS" signature="validEmailAndInvalidPassword()[pri:3, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="validEmailAndInvalidPassword" duration-ms="4042" started-at="2017-04-26T19:23:19Z" finished-at="2017-04-26T19:23:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validEmailAndInvalidPassword -->
+        <test-method status="PASS" signature="validEmailAndEmptyPassword()[pri:4, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="validEmailAndEmptyPassword" duration-ms="3585" started-at="2017-04-26T19:23:23Z" finished-at="2017-04-26T19:23:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validEmailAndEmptyPassword -->
+        <test-method status="PASS" signature="EmptyEmailAndEmptyPassword()[pri:5, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="EmptyEmailAndEmptyPassword" duration-ms="3747" started-at="2017-04-26T19:23:26Z" finished-at="2017-04-26T19:23:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EmptyEmailAndEmptyPassword -->
+        <test-method status="PASS" signature="ForgotPasswardWorking()[pri:6, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="ForgotPasswardWorking" duration-ms="5633" started-at="2017-04-26T19:23:30Z" finished-at="2017-04-26T19:23:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWorking -->
+        <test-method status="PASS" signature="SignUpLinkWorking()[pri:7, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="SignUpLinkWorking" duration-ms="8327" started-at="2017-04-26T19:23:36Z" finished-at="2017-04-26T19:23:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpLinkWorking -->
+        <test-method status="FAIL" signature="SigninwithvalidEmailIDandPassword()[pri:8, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="SigninwithvalidEmailIDandPassword" duration-ms="7138" started-at="2017-04-26T19:23:44Z" finished-at="2017-04-26T19:23:51Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at automationFramework.ExistingUserSignInTest.SigninwithvalidEmailIDandPassword(ExistingUserSignInTest.java:103)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SigninwithvalidEmailIDandPassword -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:automationFramework.ExistingUserSignInTest@1d29cf23]" name="closeBrowser" is-config="true" duration-ms="111" started-at="2017-04-26T19:23:51Z" finished-at="2017-04-26T19:23:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- automationFramework.ExistingUserSignInTest -->
+    </test> <!-- Sign in -->
+    <test name="Forgot Password" duration-ms="29232" started-at="2017-04-26T13:53:51Z" finished-at="2017-04-26T13:54:21Z">
+      <class name="automationFramework.ForgotPasswordTest">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.ForgotPasswordTest@74650e52]" name="launchBrowser" is-config="true" duration-ms="13604" started-at="2017-04-26T19:23:51Z" finished-at="2017-04-26T19:24:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method status="PASS" signature="ForgotPasswardWorking()[pri:1, instance:automationFramework.ForgotPasswordTest@74650e52]" name="ForgotPasswardWorking" duration-ms="2249" started-at="2017-04-26T19:24:05Z" finished-at="2017-04-26T19:24:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWorking -->
+        <test-method status="PASS" signature="ForgotPasswardWithEmptyEmail()[pri:2, instance:automationFramework.ForgotPasswordTest@74650e52]" name="ForgotPasswardWithEmptyEmail" duration-ms="8039" started-at="2017-04-26T19:24:07Z" finished-at="2017-04-26T19:24:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWithEmptyEmail -->
+        <test-method status="PASS" signature="ForgotPasswardWithInvalidEmail()[pri:3, instance:automationFramework.ForgotPasswordTest@74650e52]" name="ForgotPasswardWithInvalidEmail" duration-ms="3019" started-at="2017-04-26T19:24:15Z" finished-at="2017-04-26T19:24:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWithInvalidEmail -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:automationFramework.ForgotPasswordTest@74650e52]" name="closeBrowser" is-config="true" duration-ms="2317" started-at="2017-04-26T19:24:18Z" finished-at="2017-04-26T19:24:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- automationFramework.ForgotPasswordTest -->
+    </test> <!-- Forgot Password -->
+  </suite> <!-- GoKernel Automation Suite -->
+</testng-results>

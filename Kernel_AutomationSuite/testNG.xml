@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GoKernel Automation Suite">
+
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+	<parameter name="browser" value="Chrome" />
+	<test name="Sign Up">
+		<classes>
+			<class name="automationFramework.NewUserRegistrarionTest" />
+		</classes>
+	</test>
+
+	<test name="Sign in">
+		<classes>
+			<class name="automationFramework.ExistingUserSignInTest" />
+		</classes>
+	</test>
+
+	<test name="Forgot Password">
+		<classes>
+			<class name="automationFramework.ForgotPasswordTest" />
+		</classes>
+	</test>
+
+</suite>
