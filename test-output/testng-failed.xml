@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [GoKernel Automation Suite]">
+  <parameter name="browser" value="Chrome"/>
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test name="Sign Up(failed)">
+    <classes>
+      <class name="automationFramework.NewUserRegistrarionTest">
+        <methods>
+          <include name="SignUpwithInvalidEmail"/>
+          <include name="SignUpwithInvalidPassword"/>
+          <include name="launchBrowser"/>
+          <include name="SignUpwithfieldsempty"/>
+          <include name="closeBrowser"/>
+        </methods>
+      </class> <!-- automationFramework.NewUserRegistrarionTest -->
+    </classes>
+  </test> <!-- Sign Up(failed) -->
+  <test name="Sign in(failed)">
+    <classes>
+      <class name="automationFramework.ExistingUserSignInTest">
+        <methods>
+          <include name="SigninwithInvalidEmailID"/>
+          <include name="launchBrowser"/>
+          <include name="ForgotPasswardWorking"/>
+          <include name="SignUpLinkWorking"/>
+          <include name="validEmailAndEmptyPassword"/>
+          <include name="closeBrowser"/>
+          <include name="SigninwithvalidEmailIDandPassword"/>
+          <include name="EmptyEmailAndEmptyPassword"/>
+          <include name="nonExistingUserLogin"/>
+          <include name="validEmailAndInvalidPassword"/>
+        </methods>
+      </class> <!-- automationFramework.ExistingUserSignInTest -->
+    </classes>
+  </test> <!-- Sign in(failed) -->
+  <test name="Forgot Password(failed)">
+    <classes>
+      <class name="automationFramework.ForgotPasswordTest">
+        <methods>
+          <include name="closeBrowser"/>
+          <include name="launchBrowser"/>
+          <include name="ForgotPasswardWithEmptyEmail"/>
+          <include name="ForgotPasswardWorking"/>
+          <include name="ForgotPasswardWithInvalidEmail"/>
+        </methods>
+      </class> <!-- automationFramework.ForgotPasswordTest -->
+    </classes>
+  </test> <!-- Forgot Password(failed) -->
+</suite> <!-- Failed suite [GoKernel Automation Suite] -->

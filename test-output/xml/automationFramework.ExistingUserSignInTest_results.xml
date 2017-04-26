@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Sign in"
+           tests="8"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="36.990">
+  <properties />
+  
+  
+            <testcase name="SigninwithInvalidEmailID" time="3.151" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="validEmailAndInvalidPassword" time="2.816" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="SigninwithvalidEmailIDandPassword" time="8.528" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="nonExistingUserLogin" time="3.837" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="ForgotPasswardWorking" time="5.473" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="validEmailAndEmptyPassword" time="2.474" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="EmptyEmailAndEmptyPassword" time="3.268" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="SignUpLinkWorking" time="7.443" classname="automationFramework.ExistingUserSignInTest" />
+      
+</testsuite>
