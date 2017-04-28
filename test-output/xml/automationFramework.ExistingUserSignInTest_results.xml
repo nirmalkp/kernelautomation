@@ -4,17 +4,17 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="36.990">
+           time="33.343">
   <properties />
   
   
-            <testcase name="SigninwithInvalidEmailID" time="3.151" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="validEmailAndInvalidPassword" time="2.816" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="SigninwithvalidEmailIDandPassword" time="8.528" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="nonExistingUserLogin" time="3.837" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="ForgotPasswardWorking" time="5.473" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="validEmailAndEmptyPassword" time="2.474" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="EmptyEmailAndEmptyPassword" time="3.268" classname="automationFramework.ExistingUserSignInTest" />
-                <testcase name="SignUpLinkWorking" time="7.443" classname="automationFramework.ExistingUserSignInTest" />
+            <testcase name="ForgotPasswardWorking" time="3.240" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="nonExistingUserLogin" time="2.638" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="SignUpLinkWorking" time="7.041" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="SigninwithvalidEmailIDandPassword" time="9.022" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="validEmailAndEmptyPassword" time="2.766" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="SigninwithInvalidEmailID" time="3.711" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="validEmailAndInvalidPassword" time="2.825" classname="automationFramework.ExistingUserSignInTest" />
+                <testcase name="EmptyEmailAndEmptyPassword" time="2.100" classname="automationFramework.ExistingUserSignInTest" />
       
 </testsuite>

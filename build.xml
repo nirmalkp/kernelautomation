@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project []>
+
+<project name="Kernel Automation" default="usage" basedir=".">
+	 <property environment="env"/>
+	    
+	    <property name="ws.home" value="${basedir}"/>
+		<property name="ws.jars" value="${user.dir}\\Jars"/>
+	    <property name="test.dest" value="${ws.home}/build"/>
+	    <property name="test.src" value="${ws.home}/src"/>
+		<property name="ng.result" value="test-output"/>
+	  
+	    <target name="setClassPath" unless="test.classpath">
+	        <path id="classpath_jars">
+	            <fileset dir="${ws.jars}" includes="*.jar"/>
+	        </path>
+	        <pathconvert pathsep=":" 
+	            property="test.classpath" 
+	            refid="classpath_jars"/>
+	    </target>
+
+	    <target name="init" depends="setClassPath">
+	        <tstamp>
+	            <format property="start.time" pattern="MM/dd/yyyy hh:mm aa" />
+	        </tstamp>
+	        <condition property="ANT" 
+	            value="${env.ANT_HOME}/bin/ant.bat" 
+	            else="${env.ANT_HOME}/bin/ant">
+	                    <os family="windows" />
+	        </condition>
+	        <taskdef name="testng" classpath="${test.classpath}" classname="org.testng.TestNGAntTask" />
+	    </target>
+	  
+	    <!-- all -->
+	    <target name="all">
+	    </target>
+
+	    <!-- clean -->
+	    <target name="clean">
+	        <delete dir="${test.dest}"/>
+	    </target>
+
+	    <!-- compile -->
+	    <target name="compile" depends="init, clean" > 
+			<delete includeemptydirs="true" quiet="true">
+	            <fileset dir="${test.dest}" includes="**/*"/>
+			</delete>
+	        <echo message="making directory..."/>
+			<mkdir dir="${test.dest}"/>
+	        <echo message="classpath------: ${test.classpath}"/>
+	        <echo message="compiling..."/>
+	        <javac 
+	            debug="true" 
+	            destdir="${test.dest}" 
+	            srcdir="${test.src}" 
+	            target="1.8" 
+	            classpath="${test.classpath}"
+	        >
+	        </javac>
+	      </target>
+
+	    <!-- build -->
+	    <target name="build" depends="init">
+	    </target>
+
+
+	<!-- run -->
+	<target name="testng" depends="compile">
+		<testng classpath="${test.classpath}:${test.dest}" suitename="Kenel Automatin">
+			<xmlfileset dir="${ws.home}" includes="testNG.xml" />
+		</testng>
+	</target>
+
+	<!-- <target name="mail" depends="compile">
+		<testng classpath="${test.classpath}:${test.dest}" suitename="SEND REPORT MAIL TO ENGINEERING AND QA TEAM">
+			<xmlfileset dir="${ws.home}" includes="mail.xml" />
+		</testng>
+	</target> -->
+
+	<target name="usage">
+		<echo>
+			ant run will execute the test
+		</echo>
+	</target>
+
+	<path id="test.c">
+		<fileset dir="${ws.jars}" includes="*.jar" />
+	</path>
+
+</project>

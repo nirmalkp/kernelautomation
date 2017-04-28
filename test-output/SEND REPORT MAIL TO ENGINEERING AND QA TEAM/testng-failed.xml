@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [SEND REPORT MAIL TO ENGINEERING AND QA TEAM]">
+  <test name="Sending Mail(failed)">
+    <classes>
+      <class name="automationFramework.Mail">
+        <methods>
+          <include name="mail"/>
+        </methods>
+      </class> <!-- automationFramework.Mail -->
+    </classes>
+  </test> <!-- Sending Mail(failed) -->
+</suite> <!-- Failed suite [SEND REPORT MAIL TO ENGINEERING AND QA TEAM] -->

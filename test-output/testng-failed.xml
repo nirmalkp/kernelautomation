@@ -6,48 +6,15 @@
     <listener class-name="org.uncommons.reportng.HTMLReporter"/>
     <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
   </listeners>
-  <test name="Sign Up(failed)">
+  <test name="Feedback And Insights(failed)">
     <classes>
-      <class name="automationFramework.NewUserRegistrarionTest">
+      <class name="automationFramework.FeedbackAndInsightsTest">
         <methods>
-          <include name="SignUpwithInvalidEmail"/>
-          <include name="SignUpwithInvalidPassword"/>
           <include name="launchBrowser"/>
-          <include name="SignUpwithfieldsempty"/>
-          <include name="closeBrowser"/>
+          <include name="setsysproperties"/>
+          <include name="RequiredFieldValidationFeedbackForm"/>
         </methods>
-      </class> <!-- automationFramework.NewUserRegistrarionTest -->
+      </class> <!-- automationFramework.FeedbackAndInsightsTest -->
     </classes>
-  </test> <!-- Sign Up(failed) -->
-  <test name="Sign in(failed)">
-    <classes>
-      <class name="automationFramework.ExistingUserSignInTest">
-        <methods>
-          <include name="SigninwithInvalidEmailID"/>
-          <include name="launchBrowser"/>
-          <include name="ForgotPasswardWorking"/>
-          <include name="SignUpLinkWorking"/>
-          <include name="validEmailAndEmptyPassword"/>
-          <include name="closeBrowser"/>
-          <include name="SigninwithvalidEmailIDandPassword"/>
-          <include name="EmptyEmailAndEmptyPassword"/>
-          <include name="nonExistingUserLogin"/>
-          <include name="validEmailAndInvalidPassword"/>
-        </methods>
-      </class> <!-- automationFramework.ExistingUserSignInTest -->
-    </classes>
-  </test> <!-- Sign in(failed) -->
-  <test name="Forgot Password(failed)">
-    <classes>
-      <class name="automationFramework.ForgotPasswordTest">
-        <methods>
-          <include name="closeBrowser"/>
-          <include name="launchBrowser"/>
-          <include name="ForgotPasswardWithEmptyEmail"/>
-          <include name="ForgotPasswardWorking"/>
-          <include name="ForgotPasswardWithInvalidEmail"/>
-        </methods>
-      </class> <!-- automationFramework.ForgotPasswordTest -->
-    </classes>
-  </test> <!-- Forgot Password(failed) -->
+  </test> <!-- Feedback And Insights(failed) -->
 </suite> <!-- Failed suite [GoKernel Automation Suite] -->

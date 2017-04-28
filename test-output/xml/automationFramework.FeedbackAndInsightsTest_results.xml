@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Feedback And Insights"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="20.525">
+  <properties />
+  
+  
+            <testcase name="ContactNameField" time="10.044" classname="automationFramework.FeedbackAndInsightsTest" />
+                <testcase name="RequiredFieldValidationFeedbackForm" time="10.481" classname="automationFramework.FeedbackAndInsightsTest" />
+      
+</testsuite>

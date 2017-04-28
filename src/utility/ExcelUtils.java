@@ -18,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils extends Constant {
 
+	@SuppressWarnings("deprecation")
 	public static Object[][] ReadExcelData(int SheetNo) throws Exception {   
 		String FilePath = File_TestData;
 		String[][] tabArray = null;
