@@ -9,6 +9,7 @@ public class Constant {
 	public static final String  REPORTS_DEPLOY_LOCATION = "C:\\Report";
 	public static final String File_TestData=(System.getProperty("user.dir")+"\\TestData\\TestData.xlsx");
 	public static final int NumberOfReqFieldsOnFeedbackForm=6;
-	
+	public static final String UL_ID_1="ui-id-1";
+	public static final String UL_ID_2="ui-id-2";
 	
 }

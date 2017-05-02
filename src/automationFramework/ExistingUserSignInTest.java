@@ -38,9 +38,6 @@ public class ExistingUserSignInTest extends Commons {
 	@Parameters({ "browser" })
 	@BeforeClass
 	public void launchBrowser(String browser) {
-
-		System.setProperty("webdriver.chrome.driver", "D:\\Installables\\Drivers\\Newfolder\\chromedriver.exe");
-		System.setProperty("webdriver.ie.driver", "D:\\Installables\\Drivers\\Newfolder\\IEDriverServer.exe");
 		try {
 
 			InvalidLoginData=(String[][]) ExcelUtils.ReadExcelData(2);

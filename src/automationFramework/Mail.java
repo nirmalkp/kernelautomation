@@ -36,8 +36,8 @@ public class Mail extends Commons{
 
 	public void sendEmail(String to)
 	{
-		final String username = "avinashshitole05@gmail.com";
-		final String password = "avinash12345";
+		final String username = "testinga022@gmail.com";
+		final String password = "test";
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
