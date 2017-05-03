@@ -7,7 +7,7 @@
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
 	</listeners>
 	<parameter name="browser" value="Chrome" />
- 	<!-- <test name="Sign Up">
+ 	 <test name="Sign Up">
 		<classes>
 			<class name="automationFramework.NewUserRegistrarionTest" />
 		</classes>
@@ -24,18 +24,18 @@
 			<class name="automationFramework.ForgotPasswordTest" />
 		</classes>
 	</test>
-
+<!--
 	<test name="Sending Mail">
 		<classes>
 			<class name="automationFramework.Mail" />
 		</classes>
 	</test>  --> 
 	
-	 <test name="Feedback And Insights">
+	  <test name="Feedback And Insights">
 		<classes>
 			<class name="automationFramework.FeedbackAndInsightsTest" />
 		</classes>
-	</test> 
+	</test>  
 
 
 </suite>

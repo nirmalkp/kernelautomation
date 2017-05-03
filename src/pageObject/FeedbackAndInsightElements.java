@@ -26,7 +26,7 @@ public class FeedbackAndInsightElements {
 
 	public static By txtbox_AontactAttributes()
 	{
-		return By.id("s2id_autogen1");
+		return By.id("s2id_attributes");
 	}
 
 	public static By Dropdown_Institution()
@@ -103,5 +103,33 @@ public class FeedbackAndInsightElements {
 		return By.id("continueEditing");
 	}
 
-
+	public static By dropdown_primaryRoleMenu()
+	{
+		return By.id("primaryRoleMenu");
+	}
+	public static By dropdown_recognitionLevelMenu()
+	{
+		return By.id("recognitionLevelMenu");
+	}
+	
+	public static By institutionList()
+	{
+		return By.id("ui-id-2");
+	}
+	
+	public static By txtbox_institutionList()
+	{
+		return By.id("institutions");
+	}
+	
+	public static By dropdown_timespent()
+	{
+		return By.id("timeSpentButton");
+	}
+	public static By dropdown_timeSpentMenu()
+	{
+		return By.id("timeSpentMenu");
+	}
+	
+	
 }

@@ -43,4 +43,26 @@ public class Commons extends Constant {
 
 	}
 
+
+	public static void selectOptionWithIndex(int indexToSelect,WebDriver driver,By UL_ID) {
+
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			WebElement autoOptions = driver.findElement(UL_ID);
+			wait.until(ExpectedConditions.visibilityOf(autoOptions));
+
+			List<WebElement> optionsToSelect = autoOptions.findElements(By.tagName("li"));
+			if(indexToSelect<=optionsToSelect.size()) {
+				optionsToSelect.get(indexToSelect).click();
+			}
+		} 		
+		catch (NoSuchElementException e) {
+			System.out.println(e.getStackTrace());
+		}
+		catch (Exception e) {
+			System.out.println(e.getStackTrace());
+		}
+
+	}
+
 }

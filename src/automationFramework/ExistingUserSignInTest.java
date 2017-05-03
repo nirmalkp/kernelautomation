@@ -79,11 +79,14 @@ public class ExistingUserSignInTest extends Commons {
 				action.moveToElement(driver.findElement(loginPageElements.Link_profileInitials())).perform();
 				//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("Link_Logout")));
 				
-				//Thread.sleep(500);
-				//wait.until(ExpectedConditions.presenceOfElementLocated(loginPageElements.Link_Logout()));
-				driver.findElement(loginPageElements.Link_Logout()).click();
-				//driver.navigate().to("https://alpha.gokernel.com/#logout");
-
+				try {
+                    //wait.until(ExpectedConditions.visibilityOfElementLocated(loginPageElements.Link_Logout()));
+                    Thread.sleep(500);
+                    driver.findElement(loginPageElements.Link_Logout()).click();
+                    
+                } catch (Exception e) {
+                    driver.navigate().to(Constant.URL+"#logout");
+                }
 			}
 			else {
 				
