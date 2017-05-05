@@ -13,9 +13,16 @@ import utility.Commons;
 import utility.Constant;
 import utility.ExcelUtils;
 
+import static org.testng.Assert.assertTrue;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.jetty.websocket.common.io.payload.PayloadProcessor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -32,18 +39,35 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
-public class FeedbackAndInsightsTest extends Commons{
+public class FeedbackAndInsightsTest extends Commons {
 
 	public WebDriver driver=null;
 	String[][] FeedbackFormData ;
 	Boolean isUSerLogin=false;
 
-	Boolean existingContactIsSearchable=false;
+	Boolean existingContactIsUseable=false;
+	Boolean existinginstitutionIsUseable=false;
+	Boolean CreateNewInstitution=false;
 	Boolean existingContactIsEditable=false;
+	Boolean NewAddedIDAInput=false;
 	Boolean IsContactFieldPopUpPromptedWhenClicked=false;
-	Boolean popUp_StartOverButton=false;
+	Boolean POPUP_Institution_StartOver=false;
 	Boolean  popUp_CreateNewContact=false;
 	Boolean  popUp_ContinueEditingThisContact=false;
+	Boolean existingContactAttribute =false;
+	Boolean newContactAttribute=false;
+	Boolean selectnewlyaddedContactAttribute=false;
+	Boolean ContactAttributeIsRemoveable=false;
+	Boolean addmultipleContact=false;
+	Boolean removeContactAttribute=false;
+	Boolean IsShowContactDetails=false;
+	String[][] InvalidLoginData;
+	String UserName="";
+	String Password="";
+
+	Boolean IDSCheckBox=false;
+	Boolean PayerCheckBox=false;
+
 
 	@Parameters({ "browser" })
 	@BeforeClass
@@ -52,7 +76,10 @@ public class FeedbackAndInsightsTest extends Commons{
 
 		try {
 
-			FeedbackFormData=(String[][]) ExcelUtils.ReadExcelData(2);
+			InvalidLoginData=(String[][]) ExcelUtils.ReadExcelData(2);
+			UserName=InvalidLoginData[0][1];
+			Password=InvalidLoginData[0][2];
+			
 		} catch (Exception e) {
 
 			printer("Test Data Not Loaded");
@@ -69,7 +96,9 @@ public class FeedbackAndInsightsTest extends Commons{
 		driver.manage().window().maximize();
 	}
 
-	//@Test
+	
+
+	//@Test(priority=1)
 	public void RequiredFieldValidationFeedbackForm() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
@@ -78,7 +107,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 		try {
 			if(isUSerLogin!=true){
-				existingUserSignIn("nirmal@gokernel.com", "Logintmm001");
+				existingUserSignIn(UserName, Password);
 			}
 			Actions action = new Actions(driver);
 			wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -125,9 +154,10 @@ public class FeedbackAndInsightsTest extends Commons{
 
 	}
 
-
-	//@Test
-	public void submitNewFeedback() throws Exception{
+	
+	@Test(priority=2)
+		public void submitNewFeedback() throws Exception
+	{
 
 		Actions action = new Actions(driver);
 		String[][] feedbackFormData ;
@@ -139,7 +169,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn("nirmal@gokernel.com", "Logintmm001");
+					existingUserSignIn(UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -147,31 +177,160 @@ public class FeedbackAndInsightsTest extends Commons{
 				isUSerLogin=true;
 			} catch (NoSuchElementException e) {
 				printer("LogedInhomepageElement.btn_CreateButton Not found on feedback page");
-				result=false;
+				driver.navigate().to(Constant.URL+"#topic/feedback");
+				//result=false;
 			}
 
-			try {
-				driver.findElement(LogedInhomepageElement.link_AddFeedback());
-			} catch (NoSuchElementException e) {
-				printer("LogedInhomepageElement.link_AddFeedback Not found on feedback page");
-				result=false;
+			//driver.findElement(LogedInhomepageElement.link_AddFeedback()).click();
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][1]);
+			//selectOptionWithIndex(0, driver,Constant.UL_ID_1);
+			driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).sendKeys(Keys.TAB);
+			selectOption(driver,feedbackFormData[0][2],FeedbackAndInsightElements.Dropdown_primaryrole(),FeedbackAndInsightElements.dropdown_primaryRoleMenu());
+			selectOption(driver,feedbackFormData[0][3],FeedbackAndInsightElements.Dropdown_recognitionlevel(),FeedbackAndInsightElements.dropdown_recognitionLevelMenu());
+			FeedbackAndInsightElements.txtbox_ContactAttributes(driver);
+			
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),feedbackFormData[0][4]);
+			// select the element from list
+			List<WebElement> options= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+			if(0<=options.size()) {
+				options.get(0).click();
+			}
+			else{
+				driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
+			}
+			
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).click();
+			//wait.until(ExpectedConditions.presenceOfElementLocated(FeedbackAndInsightElements.popUp_RequiredFieldValidation()));
+			if(driver.findElements(FeedbackAndInsightElements.popUp_RequiredFieldValidation()).size()>0){
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_PopUpStartOver()));
+				driver.findElement(FeedbackAndInsightElements.btn_PopUpStartOver()).click();
+
 			}
 
-			Boolean userExistingContact=false;
-			Boolean CreateNew=false;
-			submitFeedback(feedbackFormData[0][0],CreateNew,userExistingContact,feedbackFormData[0][1],feedbackFormData[0][2],feedbackFormData[0][3],feedbackFormData[0][4],feedbackFormData[0][5],feedbackFormData[0][6],feedbackFormData[0][7],feedbackFormData[0][6],feedbackFormData[0][7],feedbackFormData[0][8]);
 
+			Thread.sleep(500);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),feedbackFormData[0][5]);
+			//selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).sendKeys(Keys.TAB);
+			//selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+			selectOption(driver,feedbackFormData[0][6],FeedbackAndInsightElements.Dropdown_InstitutionTypeButton(),FeedbackAndInsightElements.Dropdown_InstitutionTypeMenu());
+			String player= (feedbackFormData[0][7].equalsIgnoreCase("Yes")? "true" :"false");
+			String IDS= (feedbackFormData[0][8].equalsIgnoreCase("Yes")? "true" :"false");
+			String CurrentState=driver.findElement(FeedbackAndInsightElements.chkbox_payer()).getAttribute("data-checked");
+			if(!CurrentState.equalsIgnoreCase(player)){
+				driver.findElement(FeedbackAndInsightElements.chkbox_payer()).click();
+			}
+			
+			String CurrentState1=driver.findElement(FeedbackAndInsightElements.chkbox_IDS()).getAttribute("data-checked");
+		
+			if(!CurrentState1.equalsIgnoreCase(IDS)){
+				driver.findElement(FeedbackAndInsightElements.chkbox_IDS()).click();
+				TypeInField(driver,FeedbackAndInsightElements.txtbox_IDSInput(),feedbackFormData[0][9]);
+				driver.findElement(FeedbackAndInsightElements.txtbox_IDSInput()).sendKeys(Keys.TAB);
+			}
+			 
+			
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).click();
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.CONTROL + "a");
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.DELETE);
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys("12/12/12");
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.TAB);
+			selectOption(driver,feedbackFormData[0][11],FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+
+			wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
+			driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
+
+			Thread.sleep(2000);
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+			if(driver.getCurrentUrl().contains("#home")){
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+
+				if(driver.getCurrentUrl().contains("#home")){
+					try {
+						driver.findElement(LogedInhomepageElement.link_AddFeedback()).click();
+					} 
+					catch (NoSuchElementException e) {
+						printer("LogedInhomepageElement.link_AddFeedback Not found on feedback page");
+
+					}
+				}
+
+				TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][1]);
+				selectOptionWithIndex(0, driver,Constant.UL_ID_1);
+				
+				if(driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).getAttribute("value").contains(feedbackFormData[0][1])){
+					softAssert.assertTrue(true);
+				}
+				else{
+					softAssert.fail("New added contact Not searched");
+				}
+				/*TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),feedbackFormData[0][5]);
+				selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+				*/
+				if(driver.findElement(FeedbackAndInsightElements.institutionList()).getAttribute("value").contains(feedbackFormData[0][5])){
+					CreateNewInstitution=true;
+				}
+				else{
+					CreateNewInstitution=false;
+				}
+				
+				/*TypeInField(driver,FeedbackAndInsightElements.txtbox_IDSInput(),feedbackFormData[0][9]);
+				selectOptionWithIndex(0, driver,"ui-id-3");*/
+				
+				if(driver.findElement(FeedbackAndInsightElements.txtbox_IDSInput()).getAttribute("value").contains(feedbackFormData[0][9])){
+					NewAddedIDAInput=true;
+				}
+				else{
+					NewAddedIDAInput=false;
+				}
+				 CurrentState=driver.findElement(FeedbackAndInsightElements.chkbox_payer()).getAttribute("data-checked");
+				if(CurrentState.equalsIgnoreCase(player)){
+					PayerCheckBox=true;
+				}
+				else{
+					PayerCheckBox=false;
+				}
+				
+				 CurrentState1=driver.findElement(FeedbackAndInsightElements.chkbox_IDS()).getAttribute("data-checked");
+			
+				if(CurrentState1.equalsIgnoreCase(IDS)){
+					
+					IDSCheckBox=true;
+				}
+				else{
+					IDSCheckBox=false;
+				}
+				
+				
+				
+				System.out.println("CreateNewInstitution "+CreateNewInstitution);
+				System.out.println("NewAddedIDAInput "+NewAddedIDAInput);
+				System.out.println("PayerCheckBox "+PayerCheckBox);
+				System.out.println("IDSCheckBox "+IDSCheckBox);
+				
+				
+				
+			}
+			else{
+				
+				softAssert.fail("User is not able to select newly created contact attribute");
+			}
+			
+			
+			
 		}
-		catch (NoSuchElementException e) {
-			printer("Elements Not found on while checking the functionality of contact field");
+		catch(Exception ex){
+			System.out.println(ex.getMessage());
+			softAssert.assertTrue(false);
 		}
-		softAssert.assertTrue(result);
 		softAssert.assertAll();
-	}
+		}
 
 
-
-	@Test(priority=1)
+	//@Test(priority=3)
 	public void ExistingContactNameAndSubmit() throws Exception{
 
 		Actions action = new Actions(driver);
@@ -184,7 +343,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn("nirmal@gokernel.com", "Logintmm001");
+					existingUserSignIn(UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -204,14 +363,24 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			//existingContactIsSearchable
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FeedbackAndInsightElements.txtbox_contactname()));
-			TypeInField(FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
 			selectOptionWithIndex(0, driver,Constant.UL_ID_1);
 			String selectedtext=driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).getAttribute("value");
 			softAssert.assertEquals(selectedtext,feedbackFormData[0][0], "Text searched is not matching");
 
 			Boolean userExistingContact=true;
 			Boolean CreateNew=false;
-			submitFeedback(feedbackFormData[0][0],CreateNew,userExistingContact,feedbackFormData[0][1],feedbackFormData[0][2],feedbackFormData[0][3],feedbackFormData[0][4],feedbackFormData[0][5],feedbackFormData[0][6],feedbackFormData[0][7],feedbackFormData[0][6],feedbackFormData[0][7],feedbackFormData[0][8]);
+			submitFeedback(feedbackFormData[0][1],CreateNew,userExistingContact,feedbackFormData[0][2],feedbackFormData[0][3],feedbackFormData[0][4],feedbackFormData[0][5],feedbackFormData[0][6],feedbackFormData[0][7],feedbackFormData[0][8],feedbackFormData[0][9],feedbackFormData[0][10],feedbackFormData[0][9]);
+
+			if(!driver.getCurrentUrl().contains("#home")){
+				softAssert.assertTrue(true);
+				existingContactIsUseable=true;
+				existinginstitutionIsUseable=true;
+			}
+			else{
+				softAssert.fail("User is not able to submit the feebback form when clicked on startover button");
+			}
+
 
 
 
@@ -223,7 +392,207 @@ public class FeedbackAndInsightsTest extends Commons{
 		softAssert.assertAll();
 	}
 
-	@Test(priority=2)
+
+	//@Test(priority=4)
+	public void selectnewlyaddedContactAttribute(){
+		
+		assertTrue(selectnewlyaddedContactAttribute);
+		
+	}
+	//@Test(priority=5)
+	public void existingContactIsUseable(){
+		
+		assertTrue(existingContactIsUseable);
+		
+	}
+	
+	
+	
+	//@Test(priority=1)
+	public void ContactAttribute() throws Exception{
+
+		Actions action = new Actions(driver);
+		String[][] feedbackFormData ;
+		feedbackFormData=(String[][]) ExcelUtils.ReadExcelData(3);
+		SoftAssert softAssert = new SoftAssert();
+		Boolean result=true;
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		try{
+
+			try {
+				if(isUSerLogin!=true){
+					existingUserSignIn(UserName, Password);
+				}
+
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+				isUSerLogin=true;
+			} catch (NoSuchElementException e) {
+				printer("LogedInhomepageElement.btn_CreateButton Not found on feedback page");
+				result=false;
+			}
+
+			//driver.findElement(LogedInhomepageElement.link_AddFeedback()).click();
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[1][1]);
+			//selectOptionWithIndex(0, driver,Constant.UL_ID_1);
+			driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).sendKeys(Keys.TAB);
+			selectOption(driver,feedbackFormData[1][2],FeedbackAndInsightElements.Dropdown_primaryrole(),FeedbackAndInsightElements.dropdown_primaryRoleMenu());
+			selectOption(driver,feedbackFormData[1][3],FeedbackAndInsightElements.Dropdown_recognitionlevel(),FeedbackAndInsightElements.dropdown_recognitionLevelMenu());
+			FeedbackAndInsightElements.txtbox_ContactAttributes(driver);
+			// To check if Contact attribute is removable
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),"ToRemove");
+			// select the element from list
+			List<WebElement> options2= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+			if(0<=options2.size()) {
+				options2.get(0).click();
+			}
+			else{
+				driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
+			}
+			List<WebElement> selectedItems= driver.findElement(By.id("s2id_attributes")).findElements(By.tagName("ul"));
+			System.out.println(selectedItems.size());
+			for (WebElement opt : selectedItems) {
+				//System.out.println(opt.getText());
+				opt.findElement(By.tagName("a")).click();
+
+			}
+			
+			List<WebElement> selectedItems1= driver.findElement(By.id("s2id_attributes")).findElements(By.tagName("ul"));
+			if(selectedItems1.size()>0){
+				removeContactAttribute=true;
+				//System.out.println("Contact attribute removed ");
+			}
+			else{
+				removeContactAttribute=false;
+				//System.out.println("Contact attribute Not removed ");
+			}
+
+			
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),feedbackFormData[1][4]);
+			// select the element from list
+			List<WebElement> options= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+			if(0<=options.size()) {
+				options.get(0).click();
+			}
+			else{
+				driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
+			}
+			
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),feedbackFormData[1][4]+"Add multiple");
+			// select the element from list
+			List<WebElement> options3= driver.findElement(By.id("s2id_attributes")).findElements(By.tagName("ul"));
+			int Countsize=0;
+			if(0<=options3.size()) {
+				options.get(0).click();
+				
+			}
+			else{
+				driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
+			}
+			List<WebElement> options4= driver.findElement(By.id("s2id_attributes")).findElements(By.tagName("li"));
+			for (WebElement opt : options4) {
+				Countsize++;
+				System.out.println("Count Size"+Countsize +" "+opt.getText());
+			}
+			if(Countsize>1) {
+				addmultipleContact=true;
+				System.out.println("Added Multiple");
+			}
+			else{
+				addmultipleContact=false;
+				System.out.println("Not Added Multiple");
+			}
+
+
+
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).click();
+			//wait.until(ExpectedConditions.presenceOfElementLocated(FeedbackAndInsightElements.popUp_RequiredFieldValidation()));
+			if(driver.findElements(FeedbackAndInsightElements.popUp_RequiredFieldValidation()).size()>0){
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_PopUpStartOver()));
+				driver.findElement(FeedbackAndInsightElements.btn_PopUpStartOver()).click();
+
+			}
+
+
+			Thread.sleep(500);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),feedbackFormData[1][5]);
+			selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).sendKeys(Keys.TAB);
+			//selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+			selectOption(driver,feedbackFormData[1][6],FeedbackAndInsightElements.Dropdown_InstitutionTypeButton(),FeedbackAndInsightElements.Dropdown_InstitutionTypeMenu());
+			selectOption(driver,feedbackFormData[1][9],FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+
+			wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
+			driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
+
+			Thread.sleep(2000);
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+			if(driver.getCurrentUrl().contains("#home")){
+				newContactAttribute=true;
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+
+				if(driver.getCurrentUrl().contains("#home")){
+					try {
+						driver.findElement(LogedInhomepageElement.link_AddFeedback()).click();
+					} catch (NoSuchElementException e) {
+						printer("LogedInhomepageElement.link_AddFeedback Not found on feedback page");
+						result=false;
+					}
+				}
+
+				TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),feedbackFormData[1][4]);
+				// select the element from list
+				List<WebElement> options1= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+				if(0<=options1.size()) {
+					options1.get(0).click();
+					selectnewlyaddedContactAttribute=true;
+					softAssert.assertTrue(true);
+				}
+				
+
+			}
+			else{
+				newContactAttribute=false;
+				selectnewlyaddedContactAttribute=false;
+				softAssert.fail("User is not able to select newly created contact attribute");
+			}
+			
+			
+			
+		}
+		catch(Exception ex){
+			System.out.println(ex.getMessage());
+			softAssert.assertTrue(false);
+		}
+		softAssert.assertAll();
+	}
+    
+	//@Test(priority=2)
+	public void addmultipleContactAttribute(){
+    	
+    	assertTrue(addmultipleContact);
+    	/*SoftAssert softAssert = new SoftAssert();
+		softAssert.assertTrue(addmultipleContact);
+		softAssert.assertAll();*/
+	}
+    
+    //@Test(priority=3)
+   	public void removeContactAttribute(){
+    	
+    	assertTrue(removeContactAttribute);
+       	/*SoftAssert softAssert = new SoftAssert();
+   		softAssert.assertTrue(addmultipleContact);
+   		softAssert.assertAll();*/
+   	}
+	
+	
+
+
+
+	//@Test(priority=3)
 	public void POPUP_ContactName_StartOver() throws Exception{
 
 
@@ -237,7 +606,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn("nirmal@gokernel.com", "Logintmm001");
+					existingUserSignIn(UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -257,7 +626,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			//existingContactIsSearchable
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FeedbackAndInsightElements.txtbox_contactname()));
-			TypeInField(FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
 			selectOptionWithIndex(0, driver,Constant.UL_ID_1);
 
 
@@ -303,7 +672,7 @@ public class FeedbackAndInsightsTest extends Commons{
 	}
 
 
-	@Test(priority=3)
+	//@Test(priority=4)
 	public void POPUP_ContactName_CreateNew() throws Exception{
 
 
@@ -317,7 +686,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn("nirmal@gokernel.com", "Logintmm001");
+					existingUserSignIn(UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -337,7 +706,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			//existingContactIsSearchable
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FeedbackAndInsightElements.txtbox_contactname()));
-			TypeInField(FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
 			selectOptionWithIndex(0, driver,Constant.UL_ID_1);
 
 
@@ -383,7 +752,7 @@ public class FeedbackAndInsightsTest extends Commons{
 	}
 
 
-	@Test(priority=4)
+	//@Test(priority=5)
 	public void POPUP_ContactName_ContinueEdiing() throws Exception{
 
 
@@ -397,7 +766,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn("nirmal@gokernel.com", "Logintmm001");
+					existingUserSignIn(UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -417,7 +786,7 @@ public class FeedbackAndInsightsTest extends Commons{
 
 			//existingContactIsSearchable
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FeedbackAndInsightElements.txtbox_contactname()));
-			TypeInField(FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
 			selectOptionWithIndex(0, driver,Constant.UL_ID_1);
 
 
@@ -462,16 +831,287 @@ public class FeedbackAndInsightsTest extends Commons{
 		softAssert.assertAll();
 	}
 
+	//@Test(priority=8)
+	public void POPUP_Institution_StartOver() throws Exception{
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertTrue(POPUP_Institution_StartOver);	
+		softAssert.assertAll();
+	}
+
+
+	//@Test(priority=7)
+	public void ExistingInstitutionName(){
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertTrue(existinginstitutionIsUseable);
+		softAssert.assertAll();
+	}
 
 
 
-	public void TypeInField(By eleLocator, String value) throws InterruptedException{
+
+	//@Test(priority=9)
+	public void POPUP_Institution_CreateNew() throws Exception{
+		Actions action = new Actions(driver);
+		String[][] feedbackFormData ;
+		feedbackFormData=(String[][]) ExcelUtils.ReadExcelData(3);
+		SoftAssert softAssert = new SoftAssert();
+		Boolean result=true;
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		try{
+
+			try {
+				if(isUSerLogin!=true){
+					existingUserSignIn(UserName, Password);
+				}
+
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+				isUSerLogin=true;
+			} catch (NoSuchElementException e) {
+				printer("LogedInhomepageElement.btn_CreateButton Not found on feedback page");
+				result=false;
+			}
+
+			//driver.findElement(LogedInhomepageElement.link_AddFeedback()).click();
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
+			//selectOptionWithIndex(0, driver,Constant.UL_ID_1);
+			driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).sendKeys(Keys.TAB);
+			selectOption(driver,feedbackFormData[0][1],FeedbackAndInsightElements.Dropdown_primaryrole(),FeedbackAndInsightElements.dropdown_primaryRoleMenu());
+			selectOption(driver,feedbackFormData[0][2],FeedbackAndInsightElements.Dropdown_recognitionlevel(),FeedbackAndInsightElements.dropdown_recognitionLevelMenu());
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),feedbackFormData[0][3]);
+			// select the element from list
+			List<WebElement> options= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+			if(0<=options.size()) {
+				options.get(0).click();
+			}
+			else{
+				driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
+			}
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).click();
+			//wait.until(ExpectedConditions.presenceOfElementLocated(FeedbackAndInsightElements.popUp_RequiredFieldValidation()));
+			if(driver.findElements(FeedbackAndInsightElements.popUp_RequiredFieldValidation()).size()>0){
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_PopUpcreateNew()));
+				driver.findElement(FeedbackAndInsightElements.btn_PopUpcreateNew()).click();
+				POPUP_Institution_StartOver=true;
+
+			}
+			Thread.sleep(500);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),feedbackFormData[0][4]);
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).sendKeys(Keys.TAB);
+			//selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+			selectOption(driver,feedbackFormData[0][5],FeedbackAndInsightElements.Dropdown_InstitutionTypeButton(),FeedbackAndInsightElements.Dropdown_InstitutionTypeMenu());
+			selectOption(driver,feedbackFormData[0][8],FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+
+			wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
+			driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
+
+			if(!driver.getCurrentUrl().contains("#home")){
+				softAssert.assertTrue(true);
+			}
+			else{
+				softAssert.fail("User is not able to submit the feebback form when clicked on startover button");
+			}
+
+
+		}
+		catch(Exception ex){
+			System.out.println(ex.getMessage());
+
+		}
+
+
+	}
+
+
+
+	//@Test(priority=10)
+	public void POPUP_Institution_ContinueEditing() throws Exception{
+		Actions action = new Actions(driver);
+		String[][] feedbackFormData ;
+		feedbackFormData=(String[][]) ExcelUtils.ReadExcelData(3);
+		SoftAssert softAssert = new SoftAssert();
+		Boolean result=true;
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		try{
+
+			try {
+				if(isUSerLogin!=true){
+					existingUserSignIn(UserName, Password);
+				}
+
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+				isUSerLogin=true;
+			} catch (NoSuchElementException e) {
+				printer("LogedInhomepageElement.btn_CreateButton Not found on feedback page");
+				result=false;
+			}
+
+			if(driver.getCurrentUrl().contains("#home")){
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+			}
+			//driver.findElement(LogedInhomepageElement.link_AddFeedback()).click();
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][0]);
+			//selectOptionWithIndex(0, driver,Constant.UL_ID_1);
+			driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).sendKeys(Keys.TAB);
+			selectOption(driver,feedbackFormData[0][1],FeedbackAndInsightElements.Dropdown_primaryrole(),FeedbackAndInsightElements.dropdown_primaryRoleMenu());
+			selectOption(driver,feedbackFormData[0][2],FeedbackAndInsightElements.Dropdown_recognitionlevel(),FeedbackAndInsightElements.dropdown_recognitionLevelMenu());
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),feedbackFormData[0][3]);
+			// select the element from list
+			List<WebElement> options= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+			if(0<=options.size()) {
+				options.get(0).click();
+			}
+			else{
+				driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
+			}
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),feedbackFormData[0][4]);
+			selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).click();
+			//wait.until(ExpectedConditions.presenceOfElementLocated(FeedbackAndInsightElements.popUp_RequiredFieldValidation()));
+			if(driver.findElements(FeedbackAndInsightElements.popUp_RequiredFieldValidation()).size()>0){
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_PopUpContinueEditing()));
+				driver.findElement(FeedbackAndInsightElements.btn_PopUpContinueEditing()).click();
+
+
+			}
+			Thread.sleep(500);
+
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).sendKeys(" Edited");
+			driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).sendKeys(Keys.TAB);
+
+			selectOption(driver,feedbackFormData[0][5],FeedbackAndInsightElements.Dropdown_InstitutionTypeButton(),FeedbackAndInsightElements.Dropdown_InstitutionTypeMenu());
+			selectOption(driver,feedbackFormData[0][8],FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+
+			wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
+			driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
+
+			if(driver.getCurrentUrl().contains("#home")){
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+				TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),feedbackFormData[0][4]+" Edited");
+				int result1=selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+				if(result1==1){
+					softAssert.assertTrue(true);
+				}
+				else
+				{
+					softAssert.fail("User edited institution not saved");
+				}
+			}
+			else{
+				softAssert.fail("User is not able to submit the feebback form when clicked on Continue Editing button");
+			}
+			softAssert.assertAll();
+
+		}
+		catch(Exception ex){
+			System.out.println(ex.getMessage());
+
+		}
+
+
+	}
+
+
+
+
+
+	//@Test(priority=1)	
+	public void DateFieldVarivication() throws Exception{
+		SoftAssert softAssert = new SoftAssert();
+		try {
+
+
+			Actions action = new Actions(driver);
+			String[][] feedbackFormData ;
+			feedbackFormData=(String[][]) ExcelUtils.ReadExcelData(3);
+
+			Boolean result=true;
+			WebDriverWait wait = new WebDriverWait(driver, 100);
+
+
+			try {
+				if(isUSerLogin!=true){
+					existingUserSignIn(UserName,Password);
+				}
+
+				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
+				action.moveToElement(driver.findElement(LogedInhomepageElement.btn_CreateButton())).click().perform();
+				isUSerLogin=true;
+			} catch (NoSuchElementException e) {
+				printer("LogedInhomepageElement.btn_CreateButton Not found on feedback page");
+				result=false;
+			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(FeedbackAndInsightElements.datePicker_IDSInput()));
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).click();
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.CONTROL + "a");
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.DELETE);
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys("12/12/16");
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.TAB);
+			Thread.sleep(1000);
+			//System.out.println("Manually "+ driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).getText());
+
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).clear();
+			//driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).;
+			DateFormat dateFormat = new SimpleDateFormat("dd"); 
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DATE, -1);
+			String today = dateFormat.format(cal.getTime()); 
+			if(today.toCharArray()[0]=='0'){
+				today=(String) Character.toString(today.toCharArray()[1]);
+			}
+
+			System.out.println(today);
+			driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).click();
+			driver.findElement(By.linkText(today)).click();
+			softAssert.assertTrue(true);
+			
+			
+			driver.findElement(FeedbackAndInsightElements.Link_handleContactDetails()).click();
+			Thread.sleep(500);
+			String LinkText= driver.findElement(FeedbackAndInsightElements.Link_handleContactDetails()).getText();
+			System.out.println(LinkText +" Link text");
+			boolean ISContactDetailsVisible= driver.findElement(FeedbackAndInsightElements.Div_contact_details()).isDisplayed();
+			System.out.println(ISContactDetailsVisible +" Link text");
+			if(LinkText.contains("show contact details")){
+				System.out.println("IN IF");
+				if(!ISContactDetailsVisible){
+					IsShowContactDetails=true;
+				}
+				else{
+					IsShowContactDetails=false;
+				}
+				driver.findElement(FeedbackAndInsightElements.Link_handleContactDetails()).click();
+			}
+			
+			
+			
+
+		} catch (Exception e) {
+			softAssert.assertTrue(false);
+		}
+		softAssert.assertAll();     
+
+	}
+	//@Test(priority=2)	
+	public void IsShowContactDetailsBlock() throws Exception{
+		System.out.println(IsShowContactDetails);
+		assertTrue(IsShowContactDetails);
+	}
+	
+
+	public void TypeInField(WebDriver driver, By eleLocator, String value) throws InterruptedException{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 100);
 			String val = value; 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eleLocator));
 			WebElement element = driver.findElement(eleLocator);
-			
+
 			element.click();
 			element.clear();
 			for (int i = 0; i < val.length(); i++){
@@ -481,13 +1121,13 @@ public class FeedbackAndInsightsTest extends Commons{
 				Thread.sleep(150);
 			}       
 		} catch (Exception e) {
-			
+
 		}
 
 	}
 
 
-	public void selectOption(String option,By dropdownLocator,By menuLocator) {
+	public void selectOption(WebDriver driver,String option,By dropdownLocator,By menuLocator) {
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		// Open the dropdown so the options are visible
 		wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
@@ -517,7 +1157,7 @@ public class FeedbackAndInsightsTest extends Commons{
 		try{
 			WebDriverWait wait = new WebDriverWait(driver, 100);
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(FeedbackAndInsightElements.txtbox_contactname()));
-			TypeInField(FeedbackAndInsightElements.txtbox_contactname(),ContactName);
+			TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),ContactName);
 			if(searchContactName){
 				selectOptionWithIndex(0, driver,Constant.UL_ID_1);
 				Thread.sleep(200);
@@ -533,11 +1173,10 @@ public class FeedbackAndInsightsTest extends Commons{
 
 					}
 
-
 				}
 
-				driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Date);
-				selectOption(Time,FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+				//driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Date);
+				selectOption(driver,Time,FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
 
 				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
 				driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
@@ -546,40 +1185,53 @@ public class FeedbackAndInsightsTest extends Commons{
 			else{
 				if(!CreateNew){
 					driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).clear();
-					TypeInField(FeedbackAndInsightElements.txtbox_contactname(),ContactName);
+					TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),ContactName);
 				}
-				
+
 				driver.findElement(FeedbackAndInsightElements.txtbox_contactname()).sendKeys(Keys.TAB);
 
 
 
-				selectOption(primaryrole,FeedbackAndInsightElements.Dropdown_primaryrole(),FeedbackAndInsightElements.dropdown_primaryRoleMenu());
-				selectOption(recognitionlevel,FeedbackAndInsightElements.Dropdown_recognitionlevel(),FeedbackAndInsightElements.dropdown_recognitionLevelMenu());
-				TypeInField(FeedbackAndInsightElements.txtbox_AontactAttributes(),contactattributes);
+				selectOption(driver,primaryrole,FeedbackAndInsightElements.Dropdown_primaryrole(),FeedbackAndInsightElements.dropdown_primaryRoleMenu());
+				selectOption(driver,recognitionlevel,FeedbackAndInsightElements.Dropdown_recognitionlevel(),FeedbackAndInsightElements.dropdown_recognitionLevelMenu());
+				FeedbackAndInsightElements.txtbox_ContactAttributes(driver);
+				TypeInField(driver,FeedbackAndInsightElements.txtbox_ContactAttributes(),contactattributes);
 				// select the element from list
 				List<WebElement> options= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
 				if(0<=options.size()) {
 					options.get(0).click();
 				}
 				else{
-					driver.findElement(FeedbackAndInsightElements.txtbox_AontactAttributes()).sendKeys(Keys.TAB);
+					driver.findElement(FeedbackAndInsightElements.txtbox_ContactAttributes()).sendKeys(Keys.TAB);
 				}
 				driver.findElement(FeedbackAndInsightElements.txtbox_institutionList()).click();
-				wait.until(ExpectedConditions.presenceOfElementLocated(FeedbackAndInsightElements.popUp_RequiredFieldValidation()));
+				//wait.until(ExpectedConditions.presenceOfElementLocated(FeedbackAndInsightElements.popUp_RequiredFieldValidation()));
 				if(driver.findElements(FeedbackAndInsightElements.popUp_RequiredFieldValidation()).size()>0){
 					Thread.sleep(1000);
 					wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_PopUpStartOver()));
 					driver.findElement(FeedbackAndInsightElements.btn_PopUpStartOver()).click();
-					
-				}
-				Thread.sleep(1000);
-				TypeInField(FeedbackAndInsightElements.txtbox_institutionList(),institution);
-				selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
-					selectOption(Time,FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+					POPUP_Institution_StartOver=true;
 
-					wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
-					driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
-				
+				}
+				Thread.sleep(500);
+				TypeInField(driver,FeedbackAndInsightElements.txtbox_institutionList(),institution);
+				selectOptionWithIndex(0, driver,FeedbackAndInsightElements.institutionList());
+				selectOption(driver,institutiontype,FeedbackAndInsightElements.Dropdown_InstitutionTypeButton(),FeedbackAndInsightElements.Dropdown_InstitutionTypeMenu());
+
+				String CurrentState=driver.findElement(FeedbackAndInsightElements.chkbox_payer()).getAttribute("data-checked");
+				if(!CurrentState.equalsIgnoreCase(Player)){
+					driver.findElement(FeedbackAndInsightElements.chkbox_payer()).click();
+				}
+				driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).click();
+				driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.CONTROL + "a");
+				driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.DELETE);
+				driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys("12/12/12");
+				driver.findElement(FeedbackAndInsightElements.datePicker_IDSInput()).sendKeys(Keys.TAB);
+				selectOption(driver,Time,FeedbackAndInsightElements.dropdown_timespent(),FeedbackAndInsightElements.dropdown_timeSpentMenu());
+
+				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.btn_Post()));
+				driver.findElement(FeedbackAndInsightElements.btn_Post()).click();
+
 			}
 		}catch(Exception ex){
 			printer(ex.getMessage());

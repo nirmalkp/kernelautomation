@@ -4,9 +4,9 @@
            failures="1"
            errors="0"
            skipped="0"
-           time="47.764">
+           time="64.547">
   <properties />
-            <testcase name="POPUP_ContactName" time="47.764" classname="automationFramework.FeedbackAndInsightsTest">
+            <testcase name="submitNewFeedback" time="64.547" classname="automationFramework.FeedbackAndInsightsTest">
                 <failure type="java.lang.AssertionError"
                   message="The following asserts failed:
 	expected [true] but found [false]"
@@ -14,7 +14,7 @@
 <![CDATA[java.lang.AssertionError: The following asserts failed:
 	expected [true] but found [false]
   org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
-  automationFramework.FeedbackAndInsightsTest.POPUP_ContactName(FeedbackAndInsightsTest.java:274)
+  automationFramework.FeedbackAndInsightsTest.submitNewFeedback(FeedbackAndInsightsTest.java:329)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)

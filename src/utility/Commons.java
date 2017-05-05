@@ -44,8 +44,9 @@ public class Commons extends Constant {
 	}
 
 
-	public static void selectOptionWithIndex(int indexToSelect,WebDriver driver,By UL_ID) {
+	public static int selectOptionWithIndex(int indexToSelect,WebDriver driver,By UL_ID) {
 
+		int result=0;
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 20);
 			WebElement autoOptions = driver.findElement(UL_ID);
@@ -54,6 +55,11 @@ public class Commons extends Constant {
 			List<WebElement> optionsToSelect = autoOptions.findElements(By.tagName("li"));
 			if(indexToSelect<=optionsToSelect.size()) {
 				optionsToSelect.get(indexToSelect).click();
+				result= 1;
+			}
+			else
+			{
+				result= 0;
 			}
 		} 		
 		catch (NoSuchElementException e) {
@@ -62,7 +68,7 @@ public class Commons extends Constant {
 		catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
-
+		return result;
 	}
 
 }

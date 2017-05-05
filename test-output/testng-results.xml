@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="GoKernel Automation Suite" duration-ms="69765" started-at="2017-05-02T14:10:13Z" finished-at="2017-05-02T14:11:23Z">
+  <suite name="GoKernel Automation Suite" duration-ms="77820" started-at="2017-05-05T17:04:50Z" finished-at="2017-05-05T17:06:08Z">
     <groups>
     </groups>
-    <test name="Feedback And Insights" duration-ms="69765" started-at="2017-05-02T14:10:13Z" finished-at="2017-05-02T14:11:23Z">
+    <test name="Feedback And Insights" duration-ms="77820" started-at="2017-05-05T17:04:50Z" finished-at="2017-05-05T17:06:08Z">
       <class name="automationFramework.FeedbackAndInsightsTest">
-        <test-method status="PASS" signature="setsysproperties()[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="setsysproperties" is-config="true" duration-ms="0" started-at="2017-05-02T19:40:13Z" finished-at="2017-05-02T19:40:13Z">
+        <test-method status="PASS" signature="setsysproperties()[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="setsysproperties" is-config="true" duration-ms="12" started-at="2017-05-05T22:34:50Z" finished-at="2017-05-05T22:34:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setsysproperties -->
-        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="launchBrowser" is-config="true" duration-ms="21976" started-at="2017-05-02T19:40:13Z" finished-at="2017-05-02T19:40:35Z">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="launchBrowser" is-config="true" duration-ms="13239" started-at="2017-05-05T22:34:50Z" finished-at="2017-05-05T22:35:03Z">
           <params>
             <param index="0">
               <value>
@@ -22,7 +22,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchBrowser -->
-        <test-method status="FAIL" signature="POPUP_ContactName()[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="POPUP_ContactName" duration-ms="47764" started-at="2017-05-02T19:40:35Z" finished-at="2017-05-02T19:41:23Z">
+        <test-method status="FAIL" signature="submitNewFeedback()[pri:2, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="submitNewFeedback" duration-ms="64547" started-at="2017-05-05T22:35:03Z" finished-at="2017-05-05T22:36:08Z">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[The following asserts failed:
@@ -32,7 +32,7 @@
               <![CDATA[java.lang.AssertionError: The following asserts failed:
 	expected [true] but found [false]
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
-	at automationFramework.FeedbackAndInsightsTest.POPUP_ContactName(FeedbackAndInsightsTest.java:274)
+	at automationFramework.FeedbackAndInsightsTest.submitNewFeedback(FeedbackAndInsightsTest.java:329)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -63,7 +63,7 @@
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- POPUP_ContactName -->
+        </test-method> <!-- submitNewFeedback -->
       </class> <!-- automationFramework.FeedbackAndInsightsTest -->
     </test> <!-- Feedback And Insights -->
   </suite> <!-- GoKernel Automation Suite -->

@@ -88,7 +88,7 @@ public class ExcelUtils extends Constant {
 			e.printStackTrace();
 		}
 
-		/*for (Object[] datatype : tabArray) {
+		for (Object[] datatype : tabArray) {
 
 			int colNum = 0;
 			for (Object field : datatype) {
@@ -99,7 +99,7 @@ public class ExcelUtils extends Constant {
 			}
 			System.out.println("--");
 		}
-*/
+
 		return(tabArray);
 	}
 }

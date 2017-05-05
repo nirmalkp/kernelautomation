@@ -1,9 +1,13 @@
 package pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 
-public class FeedbackAndInsightElements {
+
+public class FeedbackAndInsightElements  {
+	
+	static  String  ContactAttributeId;
 
 	public static By txtbox_contactname()
 	{
@@ -24,16 +28,25 @@ public class FeedbackAndInsightElements {
 		return By.id("recognitionLevelButton");
 	}
 
-	public static By txtbox_AontactAttributes()
+	public static By txtbox_ContactAttributes()
 	{
-		return By.id("s2id_attributes");
+		return By.id(ContactAttributeId);
+	}
+	public static void txtbox_ContactAttributes(WebDriver driver)
+	{
+		ContactAttributeId= driver.findElement(By.id("s2id_attributes")).findElement(By.tagName("input")).getAttribute("id");
+		//System.out.println(ContactAttributeId);
 	}
 
-	public static By Dropdown_Institution()
+	public static By Dropdown_InstitutionTypeButton()
 	{
 		return By.id("institutionTypeButton");
 	}
-
+	public static By Dropdown_InstitutionTypeMenu()
+	{
+		return By.id("institutionTypeMenu");
+	}
+	
 	public static By chkbox_payer()
 	{
 		return By.id("payer");
@@ -130,6 +143,11 @@ public class FeedbackAndInsightElements {
 	{
 		return By.id("timeSpentMenu");
 	}
+	
+	public static By Div_contact_details()
+	{
+		return By.id("contact-details");
+	}	
 	
 	
 }

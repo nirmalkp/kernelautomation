@@ -10,9 +10,9 @@
     <classes>
       <class name="automationFramework.FeedbackAndInsightsTest">
         <methods>
+          <include name="submitNewFeedback"/>
           <include name="launchBrowser"/>
           <include name="setsysproperties"/>
-          <include name="POPUP_ContactName"/>
         </methods>
       </class> <!-- automationFramework.FeedbackAndInsightsTest -->
     </classes>
