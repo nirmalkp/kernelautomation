@@ -33,8 +33,8 @@
 	
 	  <test name="Feedback And Insights">
 		<classes>
-			<class name="automationFramework.FeedbackAndInsightsTest" />
-			<!-- <class name="automationFramework.ContactAttributesTest" /> -->
+			 <class name="automationFramework.FeedbackAndInsightsTest" />
+			<!-- <class name="automationFramework.IDSMember" /> -->
 		</classes>
 	</test>  
 

@@ -10,8 +10,8 @@
     <classes>
       <class name="automationFramework.FeedbackAndInsightsTest">
         <methods>
-          <include name="submitNewFeedback"/>
           <include name="launchBrowser"/>
+          <include name="RemoveIDSMember"/>
           <include name="setsysproperties"/>
         </methods>
       </class> <!-- automationFramework.FeedbackAndInsightsTest -->

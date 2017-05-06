@@ -28,15 +28,16 @@ public class FeedbackAndInsightElements  {
 		return By.id("recognitionLevelButton");
 	}
 
-	public static By txtbox_ContactAttributes()
+	public static By txtbox_ContactAttributes(WebDriver driver)
 	{
+		ContactAttributeId= driver.findElement(By.id("s2id_attributes")).findElement(By.tagName("input")).getAttribute("id");
 		return By.id(ContactAttributeId);
 	}
-	public static void txtbox_ContactAttributes(WebDriver driver)
+	/*public static void txtbox_ContactAttributes(WebDriver driver)
 	{
 		ContactAttributeId= driver.findElement(By.id("s2id_attributes")).findElement(By.tagName("input")).getAttribute("id");
 		//System.out.println(ContactAttributeId);
-	}
+	}*/
 
 	public static By Dropdown_InstitutionTypeButton()
 	{

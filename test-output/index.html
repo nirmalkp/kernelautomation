@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-GoKernel_Automation_Suite">
-              <span class="suite-name border-failed">GoKernel Automation Suite</span>
+              <span class="suite-name border-passed">GoKernel Automation Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-GoKernel_Automation_Suite" class="hide-methods failed suite-GoKernel_Automation_Suite"> (hide)</a> <!-- hide-methods failed suite-GoKernel_Automation_Suite -->
-                      <a href="#" panel-name="suite-GoKernel_Automation_Suite" class="show-methods failed suite-GoKernel_Automation_Suite"> (show)</a> <!-- show-methods failed suite-GoKernel_Automation_Suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-GoKernel_Automation_Suite" class="hide-methods passed suite-GoKernel_Automation_Suite"> (hide)</a> <!-- hide-methods passed suite-GoKernel_Automation_Suite -->
+                      <a href="#" panel-name="suite-GoKernel_Automation_Suite" class="show-methods passed suite-GoKernel_Automation_Suite"> (show)</a> <!-- show-methods passed suite-GoKernel_Automation_Suite -->
                     </span>
-                    <div class="method-list-content failed suite-GoKernel_Automation_Suite">
+                    <div class="method-list-content passed suite-GoKernel_Automation_Suite">
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-GoKernel_Automation_Suite" title="automationFramework.FeedbackAndInsightsTest" hash-for-method="submitNewFeedback">submitNewFeedback</a> <!-- method navigator-link -->
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-GoKernel_Automation_Suite" title="automationFramework.FeedbackAndInsightsTest" hash-for-method="RemoveIDSMember">RemoveIDSMember</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-GoKernel_Automation_Suite -->
+                    </div> <!-- method-list-content passed suite-GoKernel_Automation_Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,26 +117,21 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-GoKernel_Automation_Suite" class="panel GoKernel_Automation_Suite">
-          <div class="suite-GoKernel_Automation_Suite-class-failed">
+          <div class="suite-GoKernel_Automation_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="passed.png"/>
               <span class="class-name">automationFramework.FeedbackAndInsightsTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="submitNewFeedback">
-                  </a> <!-- submitNewFeedback -->
-                  <span class="method-name">submitNewFeedback</span>
-                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
-	expected [true] but found [false]
-	at automationFramework.FeedbackAndInsightsTest.submitNewFeedback(FeedbackAndInsightsTest.java:329)
-... Removed 26 stack frames
-</div> <!-- stack-trace -->
+                  <a name="RemoveIDSMember">
+                  </a> <!-- RemoveIDSMember -->
+                  <span class="method-name">RemoveIDSMember</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-GoKernel_Automation_Suite-class-failed -->
+          </div> <!-- suite-GoKernel_Automation_Suite-class-passed -->
         </div> <!-- panel GoKernel_Automation_Suite -->
         <div panel-name="test-xml-GoKernel_Automation_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -196,14 +191,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'submitNewFeedback')
+data.setCell(0, 1, 'RemoveIDSMember')
 data.setCell(0, 2, 'automationFramework.FeedbackAndInsightsTest')
-data.setCell(0, 3, 64547);
+data.setCell(0, 3, 33041);
 window.suiteTableData['GoKernel_Automation_Suite']= { tableData: data, tableDiv: 'times-div-GoKernel_Automation_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 33 seconds</span>
               <div id="times-div-GoKernel_Automation_Suite">
               </div> <!-- times-div-GoKernel_Automation_Suite -->
             </div> <!-- times-div -->
@@ -236,13 +231,11 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
                 <span class="method-name">launchBrowser(Chrome)</span>
-                <span class="method-start">18 ms</span>
+                <span class="method-start">19 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">submitNewFeedback</span>
-                <span class="method-start">13264 ms</span>
+                <span class="method-name">RemoveIDSMember</span>
+                <span class="method-start">12966 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
