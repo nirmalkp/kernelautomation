@@ -124,9 +124,6 @@ public class FeedbackAndInsightsTest extends Commons {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
-		driver.get(URL);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
 	}
 
 	@Test(priority=1)
@@ -138,7 +135,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 		try {
 			if(isUSerLogin!=true){
-				existingUserSignIn(UserName, Password);
+				existingUserSignIn(driver,UserName, Password);
 			}
 			Actions action = new Actions(driver);
 			wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -204,11 +201,16 @@ public class FeedbackAndInsightsTest extends Commons {
 		SoftAssert softAssert = new SoftAssert();
 		Boolean result=true;
 		WebDriverWait wait = new WebDriverWait(driver, 100);
+		System.out.println(feedbackFormData[0][12]);
+		String[] topics=feedbackFormData[0][12].split(",");
+		for(int i=0;i>topics.length;i++){
+			System.out.println(i+" :"+topics[i]);
+		}
 		try{
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -386,7 +388,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -561,7 +563,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -666,7 +668,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -733,7 +735,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -811,7 +813,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -888,7 +890,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -963,7 +965,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -1058,7 +1060,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -1150,7 +1152,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName, Password);
+					existingUserSignIn(driver,UserName, Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -1190,7 +1192,7 @@ public class FeedbackAndInsightsTest extends Commons {
 				Thread.sleep(1000);
 				driver.manage().deleteAllCookies();
 				TypeInField(driver,FeedbackAndInsightElements.txtbox_contactname(),feedbackFormData[0][1]);
-				selectOptionWithIndex(0, driver,"ui-id-13");
+				selectOptionWithIndex(0, driver,Constant.UL_ID_1);
 				Thread.sleep(1000);
 				wait.until(ExpectedConditions.elementToBeClickable(FeedbackAndInsightElements.chkbox_IDS()));
 				 CurrentState=driver.findElement(FeedbackAndInsightElements.chkbox_IDS()).getAttribute("data-checked");
@@ -1285,7 +1287,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			try {
 				if(isUSerLogin!=true){
-					existingUserSignIn(UserName,Password);
+					existingUserSignIn(driver,UserName,Password);
 				}
 
 				wait.until(ExpectedConditions.elementToBeClickable(LogedInhomepageElement.btn_CreateButton()));
@@ -1353,45 +1355,6 @@ public class FeedbackAndInsightsTest extends Commons {
 		assertTrue(IsShowContactDetails);
 	}
 
-
-	public void TypeInField(WebDriver driver, By eleLocator, String value) throws InterruptedException{
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, 100);
-			String val = value; 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eleLocator));
-			WebElement element = driver.findElement(eleLocator);
-
-			element.click();
-			element.clear();
-			for (int i = 0; i < val.length(); i++){
-				char c = val.charAt(i);
-				String s = new StringBuilder().append(c).toString();
-				element.sendKeys(s);
-				Thread.sleep(150);
-			}       
-		} catch (Exception e) {
-
-		}
-
-	}
-
-
-	public void selectOption(WebDriver driver,String option,By dropdownLocator,By menuLocator) {
-		WebDriverWait wait = new WebDriverWait(driver, 100);
-		// Open the dropdown so the options are visible
-		wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
-		driver.findElement(dropdownLocator).click();
-		// Get all of the options
-		List<WebElement> options=driver.findElement(menuLocator).findElements(By.tagName("li"));
-		// Loop through the options and select the one that matches
-		for (WebElement opt : options) {
-			if (opt.getText().equals(option)) {
-				opt.click();
-				return;
-			}
-		}
-		throw new NoSuchElementException("Can't find " + option + " in dropdown");
-	}
 
 
 	// To prompt the popup
@@ -1488,45 +1451,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	}
 
 
-	public void existingUserSignIn(String Email,String Passward){
-		try {
-			driver.navigate().to(Constant.URL);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.findElement(homePageElements.link_SignIn()).click();
-			driver.findElement(loginPageElements.txtbox_Email()).clear();
-			driver.findElement(loginPageElements.txtbox_Email()).sendKeys(Email); 
-			driver.findElement(loginPageElements.txtbox_Password()).sendKeys(Passward); 
-			driver.findElement(loginPageElements.button_Enter()).click();
-
-
-		}
-		catch (NoSuchElementException e) {
-
-			printer("Element Not found on Login Page");
-		}
-
-	}
-	@BeforeSuite
-	public void setsysproperties() throws IOException{
-		
-		System.out.println(System.getProperty("os.name"));
-		String OS= System.getProperty("os.name");
-		if(OS.contains("Windows")){
-			System.out.println("Windows");
-			System.setProperty("webdriver.chrome.driver", "D:\\Installables\\Drivers\\Newfolder\\chromedriver.exe");
-			System.setProperty("webdriver.ie.driver", "D:\\Installables\\Drivers\\Newfolder\\IEDriverServer.exe");
-		}
-		else{
-			System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-			ChromeDriverService service = new ChromeDriverService.Builder()
-					.usingDriverExecutable(new File("/usr/bin/chromedriver"))	
-					.usingAnyFreePort()
-					.withEnvironment(ImmutableMap.of("DISPLAY",":2"))
-					.build();
-					service.start();
-		}
-	}
-
+	
 	@AfterClass
 	public void closeBrowser(){
 		System.out.println("Feedback & Insight Test Completed");

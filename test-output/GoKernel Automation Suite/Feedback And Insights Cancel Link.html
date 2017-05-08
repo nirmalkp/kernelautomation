@@ -1,34 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="3" ignored="0" total="5" passed="2">
-  <reporter-output>
-  </reporter-output>
-  <suite name="GoKernel Automation Suite" duration-ms="54005" started-at="2017-05-08T15:43:46Z" finished-at="2017-05-08T15:44:40Z">
-    <groups>
-    </groups>
-    <test name="Feedback And Insights Cancel Link" duration-ms="54005" started-at="2017-05-08T15:43:46Z" finished-at="2017-05-08T15:44:40Z">
-      <class name="automationFramework.CancelLinkOnFeedback">
-        <test-method status="PASS" signature="setsysproperties()[pri:0, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="setsysproperties" is-config="true" duration-ms="12" started-at="2017-05-08T21:13:46Z" finished-at="2017-05-08T21:13:46Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setsysproperties -->
-        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="launchBrowser" is-config="true" duration-ms="13112" started-at="2017-05-08T21:13:46Z" finished-at="2017-05-08T21:13:59Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchBrowser -->
-        <test-method status="FAIL" signature="Answer_ReplyClick()[pri:6, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="Answer_ReplyClick" duration-ms="17" started-at="2017-05-08T21:13:59Z" finished-at="2017-05-08T21:13:59Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+<html>
+<head>
+<title>TestNG:  Feedback And Insights Cancel Link</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Feedback And Insights Cancel Link</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>2/3/0</td>
+</tr><tr>
+<td>Started on:</td><td>Mon May 08 21:13:46 IST 2017</td>
+</tr>
+<tr><td>Total time:</td><td>54 seconds (54005 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='automationFramework.CancelLinkOnFeedback.Answer_ReplyClick()'><b>Answer_ReplyClick</b><br>Test class: automationFramework.CancelLinkOnFeedback</td>
+<td><div><pre>java.lang.AssertionError: expected [true] but found [false]
+	at automationFramework.CancelLinkOnFeedback.Answer_ReplyClick(CancelLinkOnFeedback.java:459)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace33232686", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace33232686'><pre>java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:93)
 	at org.testng.Assert.failNotEquals(Assert.java:512)
 	at org.testng.Assert.assertTrue(Assert.java:41)
@@ -59,19 +110,15 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Answer_ReplyClick -->
-        <test-method status="FAIL" signature="Not_discussedClick()[pri:6, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="Not_discussedClick" duration-ms="1" started-at="2017-05-08T21:13:59Z" finished-at="2017-05-08T21:13:59Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+</pre></div></td>
+<td>0</td>
+<td>automationFramework.CancelLinkOnFeedback@1f8bee4</td></tr>
+<tr>
+<td title='automationFramework.CancelLinkOnFeedback.Not_discussedClick()'><b>Not_discussedClick</b><br>Test class: automationFramework.CancelLinkOnFeedback</td>
+<td><div><pre>java.lang.AssertionError: expected [true] but found [false]
+	at automationFramework.CancelLinkOnFeedback.Not_discussedClick(CancelLinkOnFeedback.java:463)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace25836334", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace25836334'><pre>java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:93)
 	at org.testng.Assert.failNotEquals(Assert.java:512)
 	at org.testng.Assert.assertTrue(Assert.java:41)
@@ -102,23 +149,15 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Not_discussedClick -->
-        <test-method status="PASS" signature="SelectingMultipleTopic()[pri:6, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="SelectingMultipleTopic" duration-ms="40846" started-at="2017-05-08T21:13:59Z" finished-at="2017-05-08T21:14:40Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SelectingMultipleTopic -->
-        <test-method status="FAIL" signature="UserClicksonReplyandthenClicksonNotDiscussed()[pri:6, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="UserClicksonReplyandthenClicksonNotDiscussed" duration-ms="1" started-at="2017-05-08T21:14:40Z" finished-at="2017-05-08T21:14:40Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+</pre></div></td>
+<td>0</td>
+<td>automationFramework.CancelLinkOnFeedback@1f8bee4</td></tr>
+<tr>
+<td title='automationFramework.CancelLinkOnFeedback.UserClicksonReplyandthenClicksonNotDiscussed()'><b>UserClicksonReplyandthenClicksonNotDiscussed</b><br>Test class: automationFramework.CancelLinkOnFeedback</td>
+<td><div><pre>java.lang.AssertionError: expected [true] but found [false]
+	at automationFramework.CancelLinkOnFeedback.UserClicksonReplyandthenClicksonNotDiscussed(CancelLinkOnFeedback.java:451)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace18023726", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace18023726'><pre>java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:93)
 	at org.testng.Assert.failNotEquals(Assert.java:512)
 	at org.testng.Assert.assertTrue(Assert.java:41)
@@ -149,17 +188,27 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- UserClicksonReplyandthenClicksonNotDiscussed -->
-        <test-method status="PASS" signature="UserisabletoReplywithoutenteringMoreDeatils()[pri:6, instance:automationFramework.CancelLinkOnFeedback@1f8bee4]" name="UserisabletoReplywithoutenteringMoreDeatils" duration-ms="1" started-at="2017-05-08T21:14:40Z" finished-at="2017-05-08T21:14:40Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- UserisabletoReplywithoutenteringMoreDeatils -->
-      </class> <!-- automationFramework.CancelLinkOnFeedback -->
-    </test> <!-- Feedback And Insights Cancel Link -->
-  </suite> <!-- GoKernel Automation Suite -->
-</testng-results>
+</pre></div></td>
+<td>0</td>
+<td>automationFramework.CancelLinkOnFeedback@1f8bee4</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='automationFramework.CancelLinkOnFeedback.SelectingMultipleTopic()'><b>SelectingMultipleTopic</b><br>Test class: automationFramework.CancelLinkOnFeedback</td>
+<td></td>
+<td>40</td>
+<td>automationFramework.CancelLinkOnFeedback@1f8bee4</td></tr>
+<tr>
+<td title='automationFramework.CancelLinkOnFeedback.UserisabletoReplywithoutenteringMoreDeatils()'><b>UserisabletoReplywithoutenteringMoreDeatils</b><br>Test class: automationFramework.CancelLinkOnFeedback</td>
+<td></td>
+<td>0</td>
+<td>automationFramework.CancelLinkOnFeedback@1f8bee4</td></tr>
+</table><p>
+</body>
+</html>

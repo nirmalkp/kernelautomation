@@ -6,19 +6,17 @@
     <listener class-name="org.uncommons.reportng.HTMLReporter"/>
     <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
   </listeners>
-  <test name="Feedback And Insights(failed)">
+  <test name="Feedback And Insights Cancel Link(failed)">
     <classes>
-      <class name="automationFramework.FeedbackAndInsightsTest">
+      <class name="automationFramework.CancelLinkOnFeedback">
         <methods>
-          <include name="existingContactIsUseable"/>
-          <include name="launchBrowser"/>
-          <include name="selectnewlyaddedContactAttribute"/>
-          <include name="POPUP_IDSMember_StartOver"/>
-          <include name="popUp_POPUP_IDSMember_CreateNew"/>
+          <include name="UserClicksonReplyandthenClicksonNotDiscussed"/>
           <include name="setsysproperties"/>
-          <include name="addmultipleContactAttribute"/>
+          <include name="Answer_ReplyClick"/>
+          <include name="Not_discussedClick"/>
+          <include name="launchBrowser"/>
         </methods>
-      </class> <!-- automationFramework.FeedbackAndInsightsTest -->
+      </class> <!-- automationFramework.CancelLinkOnFeedback -->
     </classes>
-  </test> <!-- Feedback And Insights(failed) -->
+  </test> <!-- Feedback And Insights Cancel Link(failed) -->
 </suite> <!-- Failed suite [GoKernel Automation Suite] -->

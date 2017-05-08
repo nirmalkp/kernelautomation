@@ -150,5 +150,56 @@ public class FeedbackAndInsightElements  {
 		return By.id("contact-details");
 	}	
 	
+	public static By Cancellink_Click(){
+
+		return By.xpath("//a[contains(.,'cancel')]");
+
+	}
+	
+	public static By CancelPopup_Close(){
+
+		return By.xpath("//button[@class='k-button k-modal-close']");
+
+	}
+
+	public static By CancelPopup_NokeepMeHereButton(){
+
+		return By.id("cancel");
+
+	}
+
+	public static By CancelPopup_YesDeleteFeedbackButton(){
+
+		return By.id("deleteFedback");
+
+	}
+
+	public static By txtbox_TopicDiscussed(WebDriver driver)
+	{
+	String id= driver.findElement(By.id("s2id_topics")).findElement(By.tagName("input")).getAttribute("id");
+		return By.id(id);
+	}
+	public static By TopicDiscussed_Menu()
+	{
+		return By.id("s2id_topics");
+	}
+	
+	public static By Section_questionsFeedback()
+	{
+		return By.id("questionsFeedback");
+	}
+	
+	public static By Section_fieldInsights()
+	{
+		return By.id("fieldIntelligence");
+	}
+	public static By Section_ToicAndQuestionInfo()
+	{
+		return By.xpath("//div[@class='feedbackInfo']");
+	}
+	public static By Section_AnswerChoice()
+	{
+		return By.xpath("//div[@class='choiceContent']");
+	}
 	
 }
