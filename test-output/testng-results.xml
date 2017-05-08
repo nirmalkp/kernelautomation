@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="5" ignored="0" total="24" passed="19">
   <reporter-output>
   </reporter-output>
-  <suite name="GoKernel Automation Suite" duration-ms="45997" started-at="2017-05-06T15:37:42Z" finished-at="2017-05-06T15:38:28Z">
+  <suite name="GoKernel Automation Suite" duration-ms="467059" started-at="2017-05-08T06:05:58Z" finished-at="2017-05-08T06:13:45Z">
     <groups>
     </groups>
-    <test name="Feedback And Insights" duration-ms="45997" started-at="2017-05-06T15:37:42Z" finished-at="2017-05-06T15:38:28Z">
-      <class name="automationFramework.FeedbackAndInsightsTest">
-        <test-method status="PASS" signature="setsysproperties()[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="setsysproperties" is-config="true" duration-ms="12" started-at="2017-05-06T21:07:42Z" finished-at="2017-05-06T21:07:42Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setsysproperties -->
-        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="launchBrowser" is-config="true" duration-ms="12941" started-at="2017-05-06T21:07:42Z" finished-at="2017-05-06T21:07:55Z">
+    <test name="Sign Up" duration-ms="117551" started-at="2017-05-08T06:05:58Z" finished-at="2017-05-08T06:07:55Z">
+      <class name="automationFramework.NewUserRegistrarionTest">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.NewUserRegistrarionTest@1f8bee4]" name="launchBrowser" is-config="true" duration-ms="17106" started-at="2017-05-08T11:35:58Z" finished-at="2017-05-08T11:36:15Z">
           <params>
             <param index="0">
               <value>
@@ -22,10 +18,358 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchBrowser -->
-        <test-method status="PASS" signature="RemoveIDSMember()[pri:13, instance:automationFramework.FeedbackAndInsightsTest@187ed94]" name="RemoveIDSMember" duration-ms="33041" started-at="2017-05-06T21:07:55Z" finished-at="2017-05-06T21:08:28Z">
+        <test-method status="PASS" signature="SignUpwithfieldsempty()[pri:2, instance:automationFramework.NewUserRegistrarionTest@1f8bee4]" name="SignUpwithfieldsempty" duration-ms="3796" started-at="2017-05-08T11:36:15Z" finished-at="2017-05-08T11:36:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpwithfieldsempty -->
+        <test-method status="PASS" signature="SignUpwithInvalidPassword()[pri:3, instance:automationFramework.NewUserRegistrarionTest@1f8bee4]" name="SignUpwithInvalidPassword" duration-ms="53184" started-at="2017-05-08T11:36:18Z" finished-at="2017-05-08T11:37:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpwithInvalidPassword -->
+        <test-method status="PASS" signature="SignUpwithInvalidEmail()[pri:4, instance:automationFramework.NewUserRegistrarionTest@1f8bee4]" name="SignUpwithInvalidEmail" duration-ms="41099" started-at="2017-05-08T11:37:12Z" finished-at="2017-05-08T11:37:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpwithInvalidEmail -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:automationFramework.NewUserRegistrarionTest@1f8bee4]" name="closeBrowser" is-config="true" duration-ms="2337" started-at="2017-05-08T11:37:53Z" finished-at="2017-05-08T11:37:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- automationFramework.NewUserRegistrarionTest -->
+    </test> <!-- Sign Up -->
+    <test name="Sign in" duration-ms="51278" started-at="2017-05-08T06:07:55Z" finished-at="2017-05-08T06:08:46Z">
+      <class name="automationFramework.ExistingUserSignInTest">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="launchBrowser" is-config="true" duration-ms="16473" started-at="2017-05-08T11:37:55Z" finished-at="2017-05-08T11:38:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method status="PASS" signature="SigninwithInvalidEmailID()[pri:1, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="SigninwithInvalidEmailID" duration-ms="3332" started-at="2017-05-08T11:38:12Z" finished-at="2017-05-08T11:38:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SigninwithInvalidEmailID -->
+        <test-method status="PASS" signature="nonExistingUserLogin()[pri:2, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="nonExistingUserLogin" duration-ms="2683" started-at="2017-05-08T11:38:15Z" finished-at="2017-05-08T11:38:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- nonExistingUserLogin -->
+        <test-method status="PASS" signature="validEmailAndInvalidPassword()[pri:3, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="validEmailAndInvalidPassword" duration-ms="2756" started-at="2017-05-08T11:38:18Z" finished-at="2017-05-08T11:38:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validEmailAndInvalidPassword -->
+        <test-method status="PASS" signature="validEmailAndEmptyPassword()[pri:4, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="validEmailAndEmptyPassword" duration-ms="2626" started-at="2017-05-08T11:38:20Z" finished-at="2017-05-08T11:38:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validEmailAndEmptyPassword -->
+        <test-method status="PASS" signature="EmptyEmailAndEmptyPassword()[pri:5, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="EmptyEmailAndEmptyPassword" duration-ms="2124" started-at="2017-05-08T11:38:23Z" finished-at="2017-05-08T11:38:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EmptyEmailAndEmptyPassword -->
+        <test-method status="PASS" signature="ForgotPasswardWorking()[pri:6, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="ForgotPasswardWorking" duration-ms="3087" started-at="2017-05-08T11:38:25Z" finished-at="2017-05-08T11:38:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWorking -->
+        <test-method status="PASS" signature="SignUpLinkWorking()[pri:7, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="SignUpLinkWorking" duration-ms="7028" started-at="2017-05-08T11:38:28Z" finished-at="2017-05-08T11:38:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignUpLinkWorking -->
+        <test-method status="PASS" signature="SigninwithvalidEmailIDandPassword()[pri:8, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="SigninwithvalidEmailIDandPassword" duration-ms="8403" started-at="2017-05-08T11:38:35Z" finished-at="2017-05-08T11:38:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SigninwithvalidEmailIDandPassword -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:automationFramework.ExistingUserSignInTest@1855c9a]" name="closeBrowser" is-config="true" duration-ms="2755" started-at="2017-05-08T11:38:44Z" finished-at="2017-05-08T11:38:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- automationFramework.ExistingUserSignInTest -->
+    </test> <!-- Sign in -->
+    <test name="Forgot Password" duration-ms="37222" started-at="2017-05-08T06:08:46Z" finished-at="2017-05-08T06:09:24Z">
+      <class name="automationFramework.ForgotPasswordTest">
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.ForgotPasswordTest@bbe345]" name="launchBrowser" is-config="true" duration-ms="19557" started-at="2017-05-08T11:38:46Z" finished-at="2017-05-08T11:39:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method status="PASS" signature="ForgotPasswardWorking()[pri:1, instance:automationFramework.ForgotPasswordTest@bbe345]" name="ForgotPasswardWorking" duration-ms="3557" started-at="2017-05-08T11:39:06Z" finished-at="2017-05-08T11:39:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWorking -->
+        <test-method status="PASS" signature="ForgotPasswardWithEmptyEmail()[pri:2, instance:automationFramework.ForgotPasswordTest@bbe345]" name="ForgotPasswardWithEmptyEmail" duration-ms="8700" started-at="2017-05-08T11:39:10Z" finished-at="2017-05-08T11:39:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWithEmptyEmail -->
+        <test-method status="PASS" signature="ForgotPasswardWithInvalidEmail()[pri:3, instance:automationFramework.ForgotPasswordTest@bbe345]" name="ForgotPasswardWithInvalidEmail" duration-ms="3086" started-at="2017-05-08T11:39:18Z" finished-at="2017-05-08T11:39:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswardWithInvalidEmail -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:automationFramework.ForgotPasswordTest@bbe345]" name="closeBrowser" is-config="true" duration-ms="2315" started-at="2017-05-08T11:39:21Z" finished-at="2017-05-08T11:39:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- automationFramework.ForgotPasswordTest -->
+    </test> <!-- Forgot Password -->
+    <test name="Feedback And Insights" duration-ms="260959" started-at="2017-05-08T06:09:24Z" finished-at="2017-05-08T06:13:45Z">
+      <class name="automationFramework.FeedbackAndInsightsTest">
+        <test-method status="PASS" signature="setsysproperties()[pri:0, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="setsysproperties" is-config="true" duration-ms="8" started-at="2017-05-08T11:35:58Z" finished-at="2017-05-08T11:35:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setsysproperties -->
+        <test-method status="PASS" signature="launchBrowser(java.lang.String)[pri:0, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="launchBrowser" is-config="true" duration-ms="16497" started-at="2017-05-08T11:39:24Z" finished-at="2017-05-08T11:39:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method status="PASS" signature="RequiredFieldValidationFeedbackForm()[pri:1, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="RequiredFieldValidationFeedbackForm" duration-ms="21092" started-at="2017-05-08T11:39:40Z" finished-at="2017-05-08T11:40:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RequiredFieldValidationFeedbackForm -->
+        <test-method status="PASS" signature="POPUP_ContactName_CreateNew()[pri:7, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="POPUP_ContactName_CreateNew" duration-ms="33894" started-at="2017-05-08T11:40:01Z" finished-at="2017-05-08T11:40:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- POPUP_ContactName_CreateNew -->
+        <test-method status="PASS" signature="POPUP_Institution_CreateNew()[pri:8, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="POPUP_Institution_CreateNew" duration-ms="97994" started-at="2017-05-08T11:40:35Z" finished-at="2017-05-08T11:42:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- POPUP_Institution_CreateNew -->
+        <test-method status="PASS" signature="POPUP_Institution_ContinueEditing()[pri:9, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="POPUP_Institution_ContinueEditing" duration-ms="54860" started-at="2017-05-08T11:42:13Z" finished-at="2017-05-08T11:43:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- POPUP_Institution_ContinueEditing -->
+        <test-method status="FAIL" signature="POPUP_IDSMember_StartOver()[pri:11, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="POPUP_IDSMember_StartOver" duration-ms="2" started-at="2017-05-08T11:43:08Z" finished-at="2017-05-08T11:43:08Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertTrue(Assert.java:41)
+	at org.testng.Assert.assertTrue(Assert.java:51)
+	at automationFramework.FeedbackAndInsightsTest.POPUP_IDSMember_StartOver(FeedbackAndInsightsTest.java:1127)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- POPUP_IDSMember_StartOver -->
+        <test-method status="FAIL" signature="popUp_POPUP_IDSMember_CreateNew()[pri:12, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="popUp_POPUP_IDSMember_CreateNew" duration-ms="4" started-at="2017-05-08T11:43:08Z" finished-at="2017-05-08T11:43:08Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertTrue(Assert.java:41)
+	at org.testng.Assert.assertTrue(Assert.java:51)
+	at automationFramework.FeedbackAndInsightsTest.popUp_POPUP_IDSMember_CreateNew(FeedbackAndInsightsTest.java:1132)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- popUp_POPUP_IDSMember_CreateNew -->
+        <test-method status="PASS" signature="RemoveIDSMember()[pri:13, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="RemoveIDSMember" duration-ms="36591" started-at="2017-05-08T11:43:08Z" finished-at="2017-05-08T11:43:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- RemoveIDSMember -->
+        <test-method status="FAIL" signature="selectnewlyaddedContactAttribute()[pri:14, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="selectnewlyaddedContactAttribute" duration-ms="1" started-at="2017-05-08T11:43:45Z" finished-at="2017-05-08T11:43:45Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertTrue(Assert.java:41)
+	at org.testng.Assert.assertTrue(Assert.java:51)
+	at automationFramework.FeedbackAndInsightsTest.selectnewlyaddedContactAttribute(FeedbackAndInsightsTest.java:1220)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectnewlyaddedContactAttribute -->
+        <test-method status="FAIL" signature="existingContactIsUseable()[pri:15, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="existingContactIsUseable" duration-ms="0" started-at="2017-05-08T11:43:45Z" finished-at="2017-05-08T11:43:45Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertTrue(Assert.java:41)
+	at org.testng.Assert.assertTrue(Assert.java:51)
+	at automationFramework.FeedbackAndInsightsTest.existingContactIsUseable(FeedbackAndInsightsTest.java:1226)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- existingContactIsUseable -->
+        <test-method status="FAIL" signature="addmultipleContactAttribute()[pri:16, instance:automationFramework.FeedbackAndInsightsTest@1063c0a]" name="addmultipleContactAttribute" duration-ms="1" started-at="2017-05-08T11:43:45Z" finished-at="2017-05-08T11:43:45Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertTrue(Assert.java:41)
+	at org.testng.Assert.assertTrue(Assert.java:51)
+	at automationFramework.FeedbackAndInsightsTest.addmultipleContactAttribute(FeedbackAndInsightsTest.java:1233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addmultipleContactAttribute -->
       </class> <!-- automationFramework.FeedbackAndInsightsTest -->
     </test> <!-- Feedback And Insights -->
   </suite> <!-- GoKernel Automation Suite -->

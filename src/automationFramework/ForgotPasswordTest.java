@@ -1,16 +1,21 @@
 package automationFramework;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import com.google.common.collect.ImmutableMap;
 
 import pageObject.homePageElements;
 import pageObject.loginPageElements;
@@ -28,10 +33,8 @@ public class ForgotPasswordTest extends Commons {
 
 	@Parameters({ "browser" })
 	@BeforeClass
-	public void launchBrowser(String browser) {
+	public void launchBrowser(String browser) throws IOException {
 		System.out.println(browser);
-		System.setProperty("webdriver.chrome.driver", "D:\\Installables\\Drivers\\Newfolder\\chromedriver.exe");
-		System.setProperty("webdriver.ie.driver", "D:\\Installables\\Drivers\\Newfolder\\IEDriverServer.exe");
 		try {
 
 			PasswordResetData=(String[][]) ExcelUtils.ReadExcelData(2);
@@ -39,12 +42,36 @@ public class ForgotPasswordTest extends Commons {
 
 			printer("Test Data Not Loaded");
 		}
-		if(browser.contains("Chrome")){
-			driver = new ChromeDriver();
+		System.out.println(System.getProperty("os.name"));
+		String OS= System.getProperty("os.name");
+		if(OS.contains("Windows")){
+			System.out.println("Windows");
+
+			if(browser.contains("Chrome"))
+			{
+				driver = new ChromeDriver();
+			}
+			else
+			{
+				driver = new InternetExplorerDriver();
+			}
+
 		}
-		else{
-			driver = new InternetExplorerDriver();
+		else { 
+
+			ChromeDriverService service = new ChromeDriverService.Builder()
+					.usingDriverExecutable(new File("/usr/bin/chromedriver"))	
+					.usingAnyFreePort()
+					.withEnvironment(ImmutableMap.of("DISPLAY",":2"))
+					.build();
+			service.start();
+
+			driver = new ChromeDriver(service);
+
 		}
+		driver.get(URL);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 
 		driver.get(URL);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -171,6 +198,7 @@ public class ForgotPasswordTest extends Commons {
 	// Closing the browser at the end of this test case	
 	@AfterClass
 	public void closeBrowser(){
+		System.out.println("ForgotPassword Test Completed");
 		driver.close();
 	}
 

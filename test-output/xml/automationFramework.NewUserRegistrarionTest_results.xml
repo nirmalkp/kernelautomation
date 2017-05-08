@@ -4,12 +4,12 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="100.186">
+           time="98.079">
   <properties />
   
   
-            <testcase name="SignUpwithfieldsempty" time="3.712" classname="automationFramework.NewUserRegistrarionTest" />
-                <testcase name="SignUpwithInvalidPassword" time="45.203" classname="automationFramework.NewUserRegistrarionTest" />
-                <testcase name="SignUpwithInvalidEmail" time="51.271" classname="automationFramework.NewUserRegistrarionTest" />
+            <testcase name="SignUpwithInvalidPassword" time="53.184" classname="automationFramework.NewUserRegistrarionTest" />
+                <testcase name="SignUpwithInvalidEmail" time="41.099" classname="automationFramework.NewUserRegistrarionTest" />
+                <testcase name="SignUpwithfieldsempty" time="3.796" classname="automationFramework.NewUserRegistrarionTest" />
       
 </testsuite>

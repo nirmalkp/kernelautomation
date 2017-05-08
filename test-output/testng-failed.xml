@@ -10,9 +10,13 @@
     <classes>
       <class name="automationFramework.FeedbackAndInsightsTest">
         <methods>
+          <include name="existingContactIsUseable"/>
           <include name="launchBrowser"/>
-          <include name="RemoveIDSMember"/>
+          <include name="selectnewlyaddedContactAttribute"/>
+          <include name="POPUP_IDSMember_StartOver"/>
+          <include name="popUp_POPUP_IDSMember_CreateNew"/>
           <include name="setsysproperties"/>
+          <include name="addmultipleContactAttribute"/>
         </methods>
       </class> <!-- automationFramework.FeedbackAndInsightsTest -->
     </classes>

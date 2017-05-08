@@ -1,5 +1,7 @@
 package automationFramework;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -9,6 +11,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +22,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import com.google.common.collect.ImmutableMap;
 
 import pageObject.homePageElements;
 import pageObject.loginPageElements;
@@ -31,13 +36,13 @@ public class ExistingUserSignInTest extends Commons {
 	public WebDriver driver=null;
 	String[][] InvalidLoginData ;
 
-	
+
 
 
 
 	@Parameters({ "browser" })
 	@BeforeClass
-	public void launchBrowser(String browser) {
+	public void launchBrowser(String browser) throws IOException {
 		try {
 
 			InvalidLoginData=(String[][]) ExcelUtils.ReadExcelData(2);
@@ -45,13 +50,33 @@ public class ExistingUserSignInTest extends Commons {
 
 			printer("Test Data Not Loaded");
 		}
-		if(browser.contains("Chrome")){
-			driver = new ChromeDriver();
-		}
-		else{
-			driver = new InternetExplorerDriver();
-		}
+		System.out.println(System.getProperty("os.name"));
+		String OS= System.getProperty("os.name");
+		if(OS.contains("Windows")){
+			System.out.println("Windows");
 
+			if(browser.contains("Chrome"))
+			{
+				driver = new ChromeDriver();
+			}
+			else
+			{
+				driver = new InternetExplorerDriver();
+			}
+
+		}
+		else { 
+
+			ChromeDriverService service = new ChromeDriverService.Builder()
+					.usingDriverExecutable(new File("/usr/bin/chromedriver"))	
+					.usingAnyFreePort()
+					.withEnvironment(ImmutableMap.of("DISPLAY",":2"))
+					.build();
+			service.start();
+
+			driver = new ChromeDriver(service);
+
+		}
 		driver.get(URL);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -78,25 +103,25 @@ public class ExistingUserSignInTest extends Commons {
 				Actions action = new Actions(driver);
 				action.moveToElement(driver.findElement(loginPageElements.Link_profileInitials())).perform();
 				//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("Link_Logout")));
-				
+
 				try {
-                    //wait.until(ExpectedConditions.visibilityOfElementLocated(loginPageElements.Link_Logout()));
-                    Thread.sleep(500);
-                    driver.findElement(loginPageElements.Link_Logout()).click();
-                    
-                } catch (Exception e) {
-                    driver.navigate().to(Constant.URL+"#logout");
-                }
+					//wait.until(ExpectedConditions.visibilityOfElementLocated(loginPageElements.Link_Logout()));
+					Thread.sleep(500);
+					driver.findElement(loginPageElements.Link_Logout()).click();
+
+				} catch (Exception e) {
+					driver.navigate().to(Constant.URL+"#logout");
+				}
 			}
 			else {
-				
+
 				printer("SigninwithvalidEmailIDandPassword : Failed ");
 				softAssert.assertTrue(false);
 			}
 
 		}
 		catch(Exception Ex){
-			
+
 			printer(Ex.getMessage());
 			softAssert.assertTrue(false);
 		}
@@ -132,7 +157,7 @@ public class ExistingUserSignInTest extends Commons {
 	/**
 	 * Sign in with Email ID & Password which is not registered 
 	 */
-	
+
 	@Test(priority=2)
 	public void nonExistingUserLogin() {
 		SoftAssert softAssert = new SoftAssert();
@@ -179,9 +204,9 @@ public class ExistingUserSignInTest extends Commons {
 		softAssert.assertAll();
 	}
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/**
- * Sign in with Valid Email and empty password
- */
+	/**
+	 * Sign in with Valid Email and empty password
+	 */
 	@Test(priority=4)
 	public void validEmailAndEmptyPassword () {
 		SoftAssert softAssert = new SoftAssert();
@@ -204,9 +229,9 @@ public class ExistingUserSignInTest extends Commons {
 	}
 
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/**
- * Sign in with Empty Email and empty password
- */
+	/**
+	 * Sign in with Empty Email and empty password
+	 */
 	@Test(priority=5)
 	public void EmptyEmailAndEmptyPassword () {
 		SoftAssert softAssert = new SoftAssert();
@@ -269,13 +294,13 @@ public class ExistingUserSignInTest extends Commons {
 		}
 		softAssert.assertAll();
 	}
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	/**
 	 * Sign Up link visible and working
 	 * @throws InterruptedException
 	 */
-	
-	
+
+
 	@Test(priority=7)
 	public void SignUpLinkWorking () throws InterruptedException  {
 		SoftAssert softAssert = new SoftAssert();
@@ -303,7 +328,7 @@ public class ExistingUserSignInTest extends Commons {
 	}
 
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	/**
 	 * Closing the browser after test case execution
 	 */
@@ -325,7 +350,7 @@ public class ExistingUserSignInTest extends Commons {
 			driver.findElement(loginPageElements.txtbox_Password()).sendKeys(Passward); 
 			driver.findElement(loginPageElements.button_Enter()).click();
 
-			
+
 		}
 		catch (NoSuchElementException e) {
 

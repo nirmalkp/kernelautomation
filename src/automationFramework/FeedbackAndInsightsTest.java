@@ -35,9 +35,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.TestNG;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
+import com.google.common.collect.ImmutableMap;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import java.io.File;
+import java.io.IOException;
 
 public class FeedbackAndInsightsTest extends Commons {
 
@@ -75,7 +80,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 	@Parameters({ "browser" })
 	@BeforeClass
-	public void launchBrowser(String browser) {
+	public void launchBrowser(String browser) throws IOException {
 
 
 		try {
@@ -88,12 +93,36 @@ public class FeedbackAndInsightsTest extends Commons {
 
 			printer("Test Data Not Loaded");
 		}
-		if(browser.contains("Chrome")){
-			driver = new ChromeDriver();
+		System.out.println(System.getProperty("os.name"));
+		String OS= System.getProperty("os.name");
+		if(OS.contains("Windows")){
+			System.out.println("Windows");
+
+			if(browser.contains("Chrome"))
+			{
+				driver = new ChromeDriver();
+			}
+			else
+			{
+				driver = new InternetExplorerDriver();
+			}
+
 		}
-		else{
-			driver = new InternetExplorerDriver();
+		else { 
+
+			ChromeDriverService service = new ChromeDriverService.Builder()
+					.usingDriverExecutable(new File("/usr/bin/chromedriver"))	
+					.usingAnyFreePort()
+					.withEnvironment(ImmutableMap.of("DISPLAY",":2"))
+					.build();
+			service.start();
+
+			driver = new ChromeDriver(service);
+
 		}
+		driver.get(URL);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 
 		driver.get(URL);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1478,8 +1507,30 @@ public class FeedbackAndInsightsTest extends Commons {
 
 	}
 	@BeforeSuite
-	public void setsysproperties(){
-		System.setProperty("webdriver.chrome.driver", "D:\\Installables\\Drivers\\Newfolder\\chromedriver.exe");
-		System.setProperty("webdriver.ie.driver", "D:\\Installables\\Drivers\\Newfolder\\IEDriverServer.exe");
+	public void setsysproperties() throws IOException{
+		
+		System.out.println(System.getProperty("os.name"));
+		String OS= System.getProperty("os.name");
+		if(OS.contains("Windows")){
+			System.out.println("Windows");
+			System.setProperty("webdriver.chrome.driver", "D:\\Installables\\Drivers\\Newfolder\\chromedriver.exe");
+			System.setProperty("webdriver.ie.driver", "D:\\Installables\\Drivers\\Newfolder\\IEDriverServer.exe");
+		}
+		else{
+			System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+			ChromeDriverService service = new ChromeDriverService.Builder()
+					.usingDriverExecutable(new File("/usr/bin/chromedriver"))	
+					.usingAnyFreePort()
+					.withEnvironment(ImmutableMap.of("DISPLAY",":2"))
+					.build();
+					service.start();
+		}
 	}
+
+	@AfterClass
+	public void closeBrowser(){
+		System.out.println("Feedback & Insight Test Completed");
+		driver.close();
+	}
+
 }
