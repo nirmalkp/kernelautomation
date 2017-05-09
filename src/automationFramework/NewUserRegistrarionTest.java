@@ -38,7 +38,7 @@ public class NewUserRegistrarionTest extends Commons {
 	@Parameters({ "browser" })
 	@BeforeClass
 	public void launchBrowser(String browser) throws IOException {
-		System.out.println(browser);
+		System.out.println(" New User registration  test : START");
 		try {
 			InvalidSignUpData=(String[][]) ExcelUtils.ReadExcelData(1);
 			validSignUpData=(String[][]) ExcelUtils.ReadExcelData(0);

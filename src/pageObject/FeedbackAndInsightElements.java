@@ -193,13 +193,21 @@ public class FeedbackAndInsightElements  {
 	{
 		return By.id("fieldIntelligence");
 	}
+	
 	public static By Section_ToicAndQuestionInfo()
 	{
 		return By.xpath("//div[@class='feedbackInfo']");
 	}
+	
 	public static By Section_AnswerChoice()
 	{
 		return By.xpath("//div[@class='choiceContent']");
 	}
+	
+	public static By txt_insightTxtArea()
+	{
+		return By.id("insightTxtArea");
+	}
+	
 	
 }

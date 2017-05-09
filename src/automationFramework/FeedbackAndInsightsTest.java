@@ -82,6 +82,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	@BeforeClass
 	public void launchBrowser(String browser) throws IOException {
 
+		System.out.println("Feedback form varification : Started");
 
 		try {
 
@@ -126,6 +127,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 	}
 
+	
 	@Test(priority=1)
 	public void RequiredFieldValidationFeedbackForm() throws Exception {
 
@@ -191,7 +193,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	 * This function reads 1st row as test data
 	 * @throws Exception
 	 */
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void submitNewFeedback() throws Exception
 	{
 		driver.navigate().to(Constant.URL);
@@ -374,7 +376,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	 * This function reads 2nd row as test data
 	 * @throws Exception
 	 */
-//	@Test(priority=3)
+	@Test(priority=3)
 	public void ContactAttribute() throws Exception{
 
 		driver.navigate().to(Constant.URL);
@@ -546,7 +548,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	 * This function reads 1nd row as test data
 	 * @throws Exception
 	 */
-	//@Test(priority=4)
+	@Test(priority=4)
 	public void IDSMemberVerification() throws Exception{
 		driver.navigate().to(Constant.URL);
 		SoftAssert softAssert = new SoftAssert();
@@ -650,7 +652,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	 * @throws Exception
 	 */
 
-//	@Test(priority=5)
+	@Test(priority=5)
 	public void popUp_ContinueEditing_POPUP_IDSMembert(){
 
 		driver.navigate().to(Constant.URL);
@@ -721,7 +723,7 @@ public class FeedbackAndInsightsTest extends Commons {
 		softAssert.assertAll();    
 	}
 
-//	@Test(priority=6)
+	@Test(priority=6)
 	public void POPUP_ContactName_StartOver() throws Exception{
 
 		driver.navigate().to(Constant.URL);
@@ -1046,7 +1048,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 	}
 
-//	@Test(priority=10)
+	@Test(priority=10)
 	public void POPUP_ContactName_ContinueEdiing() throws Exception{
 
 		driver.navigate().to(Constant.URL);
@@ -1239,7 +1241,7 @@ public class FeedbackAndInsightsTest extends Commons {
 		softAssert.assertAll();
 	}
 
-	//@Test(priority=3)
+	@Test(priority=3)
 	public void removeContactAttribute(){
 
 		assertTrue(removeContactAttribute);
@@ -1253,7 +1255,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 
 
-	//@Test(priority=8)
+	@Test(priority=8)
 	public void POPUP_Institution_StartOver() throws Exception{
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertTrue(POPUP_Institution_StartOver);	
@@ -1261,7 +1263,7 @@ public class FeedbackAndInsightsTest extends Commons {
 	}
 
 
-	//@Test(priority=7)
+	@Test(priority=7)
 	public void ExistingInstitutionName(){
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertTrue(existinginstitutionIsUseable);
@@ -1271,7 +1273,7 @@ public class FeedbackAndInsightsTest extends Commons {
 
 
 
-	//@Test(priority=1)	
+	@Test(priority=1)	
 	public void DateFieldVarivication() throws Exception{
 		SoftAssert softAssert = new SoftAssert();
 		try {

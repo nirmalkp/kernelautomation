@@ -30,6 +30,10 @@ public class Commons extends Constant {
 	public static void printer(String message){
 		System.out.println(message);
 	}
+	
+	public static void printerInReport(String message){
+		System.out.println(message);
+	}
 
 	public static void selectOptionWithIndex(int indexToSelect,WebDriver driver,String UL_ID) {
 

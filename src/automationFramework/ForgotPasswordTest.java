@@ -40,7 +40,7 @@ public class ForgotPasswordTest extends Commons {
 			PasswordResetData=(String[][]) ExcelUtils.ReadExcelData(2);
 		} catch (Exception e) {
 
-			printer("Test Data Not Loaded");
+			printer("Test Data Not Loaded from excel");
 		}
 		System.out.println(System.getProperty("os.name"));
 		String OS= System.getProperty("os.name");
@@ -73,9 +73,6 @@ public class ForgotPasswordTest extends Commons {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
-		driver.get(URL);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
 	}
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -83,6 +80,7 @@ public class ForgotPasswordTest extends Commons {
 // user with valid email address
 	@Test(priority=1)
 	public void ForgotPasswardWorking ()  {
+		System.out.println(" ForgotPasswardWorking : START");
 		SoftAssert softAssert = new SoftAssert();
 		try{
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -95,6 +93,7 @@ public class ForgotPasswordTest extends Commons {
 				if(driver.findElements(passwordResetPageElements.text_SendResetRequesetSuccess()).size()>0)
 				{
 					softAssert.assertTrue(true);
+					
 				}
 				else
 				{
@@ -113,6 +112,7 @@ public class ForgotPasswordTest extends Commons {
 			softAssert.assertTrue(false);
 		}
 		softAssert.assertAll();
+		System.out.println(" ForgotPasswardWorking : END");
 	}
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -121,6 +121,7 @@ public class ForgotPasswordTest extends Commons {
 	@Test(priority=2)
 	public void ForgotPasswardWithEmptyEmail() throws InterruptedException  
 	{
+		System.out.println(" ForgotPasswardWithEmptyEmail : START");
 		SoftAssert softAssert = new SoftAssert();
 		try{
 			driver.navigate().to(Constant.URL);
@@ -153,6 +154,7 @@ public class ForgotPasswordTest extends Commons {
 			softAssert.assertTrue(false);
 		}
 		softAssert.assertAll();
+		System.out.println(" ForgotPasswardWithEmptyEmail : END");
 	}
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -161,6 +163,7 @@ public class ForgotPasswordTest extends Commons {
 	@Test(priority=3)
 	public void ForgotPasswardWithInvalidEmail()  
 	{
+		System.out.println(" ForgotPasswardWithInvalidEmail : START");
 		SoftAssert softAssert = new SoftAssert();
 		try{
 			driver.navigate().to(Constant.URL);
@@ -192,6 +195,7 @@ public class ForgotPasswordTest extends Commons {
 			softAssert.assertTrue(false);
 		}
 		softAssert.assertAll();
+		System.out.println(" ForgotPasswardWithInvalidEmail : END");
 	}
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

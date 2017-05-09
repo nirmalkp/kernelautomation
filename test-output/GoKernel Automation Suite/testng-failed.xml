@@ -10,10 +10,8 @@
     <classes>
       <class name="automationFramework.CancelLinkOnFeedback">
         <methods>
-          <include name="UserClicksonReplyandthenClicksonNotDiscussed"/>
           <include name="setsysproperties"/>
-          <include name="Answer_ReplyClick"/>
-          <include name="Not_discussedClick"/>
+          <include name="SelectingMultipleTopic"/>
           <include name="launchBrowser"/>
         </methods>
       </class> <!-- automationFramework.CancelLinkOnFeedback -->

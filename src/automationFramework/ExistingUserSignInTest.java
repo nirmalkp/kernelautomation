@@ -43,6 +43,7 @@ public class ExistingUserSignInTest extends Commons {
 	@Parameters({ "browser" })
 	@BeforeClass
 	public void launchBrowser(String browser) throws IOException {
+		System.out.println("Existing User SignIn Test : Started");
 		try {
 
 			InvalidLoginData=(String[][]) ExcelUtils.ReadExcelData(2);
@@ -337,6 +338,7 @@ public class ExistingUserSignInTest extends Commons {
 
 	@AfterClass
 	public void closeBrowser(){
+		System.out.println("Existing User SignIn Test : Completed");
 		driver.close();
 	}
 

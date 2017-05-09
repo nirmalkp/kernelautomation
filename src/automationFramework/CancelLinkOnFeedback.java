@@ -43,6 +43,15 @@ public class CancelLinkOnFeedback extends Commons {
 	String Password="";
 	Boolean isUSerLogin=false;
 	public WebDriver driver=null;
+	Boolean removeTopic=false;
+	Boolean	FeedbackInsightsection=false;
+	Boolean userIsAbletosubmitFormWithQuestion=false;
+	Boolean userIsAbletosubmitFormWithMultipletopic=false;
+	Boolean Answer_ReplyClick=false;
+	Boolean Not_discussedClick=false;
+	Boolean UserisabletoReplywithoutenteringMoreDeatils=false;
+	Boolean UserClicksonReplyandthenClicksonNotDiscussed =false;
+	
 
 	@Parameters({ "browser" })
 	@BeforeClass
@@ -92,7 +101,7 @@ public class CancelLinkOnFeedback extends Commons {
 
 	}
 
-
+/*
 	@Test(priority=1)
 	public void EmptyFieldCancelButtonClick() throws Exception {
 		driver.navigate().to(Constant.URL);
@@ -210,16 +219,8 @@ public class CancelLinkOnFeedback extends Commons {
 	}
 
 	
-	Boolean removeTopic=false;
-	Boolean	FeedbackInsightsection=false;
-	Boolean userIsAbletosubmitFormWithQuestion=false;
-	Boolean userIsAbletosubmitFormWithMultipletopic=false;
-	Boolean Answer_ReplyClick=false;
-	Boolean Not_discussedClick=false;
-	Boolean UserisabletoReplywithoutenteringMoreDeatils=false;
-	Boolean UserClicksonReplyandthenClicksonNotDiscussed =false;
-	
-	//@Test(priority=5)
+
+@Test(priority=5)
 	  public void WhatTopicsWereDiscussedTest() throws Exception {
 			driver.navigate().to(Constant.URL);
 			Actions action = new Actions(driver);
@@ -296,10 +297,10 @@ public class CancelLinkOnFeedback extends Commons {
 				}
 				
 				
-				/*System.out.println("Section_questionsFeedback"+driver.findElement(FeedbackAndInsightElements.Section_questionsFeedback()).isDisplayed());
+				System.out.println("Section_questionsFeedback"+driver.findElement(FeedbackAndInsightElements.Section_questionsFeedback()).isDisplayed());
 				System.out.println( "Section_fieldInsights"+driver.findElement(FeedbackAndInsightElements.Section_fieldInsights()).isDisplayed());
 				System.out.println( "Section_ToicAndQuestionInfo"+  driver.findElement(FeedbackAndInsightElements.Section_ToicAndQuestionInfo()).isDisplayed());
-				System.out.println("text"+ driver.findElement(FeedbackAndInsightElements.Section_ToicAndQuestionInfo()).getText());	*/
+				System.out.println("text"+ driver.findElement(FeedbackAndInsightElements.Section_ToicAndQuestionInfo()).getText());	
 				
 				TypeInField(driver,FeedbackAndInsightElements.txtbox_TopicDiscussed(driver),feedbackFormData[0][13]);
 				List<WebElement> options1= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
@@ -331,7 +332,7 @@ public class CancelLinkOnFeedback extends Commons {
 			softAssert.assertAll();
 			
 	  }
-	
+	*/
 	@Test(priority=6)
 	  public void SelectingMultipleTopic() throws Exception {
 			driver.navigate().to(Constant.URL);
@@ -344,7 +345,7 @@ public class CancelLinkOnFeedback extends Commons {
 			String[] topics=feedbackFormData[0][12].split(",");
 			for(int i=0;i<topics.length;i++){
 					topics[i]=topics[i].substring(1, topics[i].length()-1);
-					System.out.println(topics[i]);
+					//System.out.println(topics[i]);
 			}
 			
 			try{
@@ -377,7 +378,7 @@ public class CancelLinkOnFeedback extends Commons {
 				System.out.println( "Section_fieldInsights"+driver.findElement(FeedbackAndInsightElements.Section_fieldInsights()).isDisplayed());
 				System.out.println( "Section_ToicAndQuestionInfo"+  driver.findElement(FeedbackAndInsightElements.Section_ToicAndQuestionInfo()).isDisplayed());
 				System.out.println("text"+ driver.findElement(FeedbackAndInsightElements.Section_ToicAndQuestionInfo()).getText());	*/
-				Thread.sleep(5000);
+				//Thread.sleep(5000);
 				for(int i=0;i<topics.length;i++){
 					TypeInField(driver,FeedbackAndInsightElements.txtbox_TopicDiscussed(driver),topics[i]);
 					List<WebElement> options1= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
@@ -399,9 +400,11 @@ public class CancelLinkOnFeedback extends Commons {
 				try {
 					List<WebElement> answerList1=answerList.get(0).findElements(By.tagName("a"));
 					answerList1.get(0).click();
+					Thread.sleep(5000);
 					Answer_ReplyClick=true;
 					UserisabletoReplywithoutenteringMoreDeatils =  answerList.get(0).findElement(By.className("pollResponse-body")).isDisplayed();
 				} catch (Exception e) {
+					System.out.println(e.getMessage());
 					Answer_ReplyClick=false;
 					UserisabletoReplywithoutenteringMoreDeatils=false;
 				}
@@ -409,18 +412,68 @@ public class CancelLinkOnFeedback extends Commons {
 				try {
 					List<WebElement> answerList2=answerList.get(1).findElements(By.tagName("a"));
 					answerList2.get(1).click();
+					Thread.sleep(5000);
 					Not_discussedClick=true;
+					Thread.sleep(5000);
 				} catch (Exception e) {
+					System.out.println(e.getMessage());
 					Not_discussedClick=false;
 				}
 				
 				try {
 					List<WebElement> answerList3=answerList.get(2).findElements(By.tagName("a"));
+					/*System.out.println(answerList3.size()+"Size");
+					System.out.println(answerList3.get(0).getText() +"Text 1");
+					System.out.println(answerList3.get(1).getText() +"Text 2");*/
+					wait.until(ExpectedConditions.elementToBeClickable(answerList3.get(0)));
 					answerList3.get(0).click();
-					answerList3.get(1).click();
+					answerList3=answerList.get(2).findElements(By.tagName("a"));
+					wait.until(ExpectedConditions.elementToBeClickable(answerList3.get(0)));
+					answerList3.get(0).click();
 					UserClicksonReplyandthenClicksonNotDiscussed=true;
 				} catch (Exception e) {
+					System.out.println(e.getMessage());
 					UserClicksonReplyandthenClicksonNotDiscussed=false;
+				}
+				
+				
+				Thread.sleep(1000);
+				List<WebElement> InsightsElements=driver.findElement(FeedbackAndInsightElements.Section_fieldInsights()).findElements(By.tagName("li"));
+				
+				if(InsightsElements.size()>0){
+					Thread.sleep(1000);
+					List<WebElement> InsightsRow1Topic=InsightsElements.get(0).findElements(By.tagName("input"));
+					List<WebElement> InsightsRow1Comment=InsightsElements.get(0).findElements(By.tagName("textarea"));
+					Thread.sleep(1000);
+					InsightsRow1Topic.get(0).sendKeys(topics[0]);
+					List<WebElement> options1= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+					if(0<=options1.size()) {
+						options1.get(0).click();
+					}
+					else{
+						driver.findElement(FeedbackAndInsightElements.txtbox_TopicDiscussed(driver)).sendKeys(Keys.TAB);
+						
+					}
+					InsightsRow1Topic.get(0).sendKeys(topics[1]);
+					 options1= driver.findElement(By.id("select2-drop")).findElements(By.tagName("ul"));
+					if(0<=options1.size()) {
+						options1.get(0).click();
+						Thread.sleep(2000);
+						List<WebElement> selectedItems= driver.findElement(By.id("s2id_insight")).findElements(By.tagName("ul"));
+						System.out.println(selectedItems.size());
+						for (WebElement opt : selectedItems) {
+							//System.out.println(opt.getText());
+							opt.findElement(By.tagName("a")).click();
+
+						}
+					}
+					else{
+						driver.findElement(FeedbackAndInsightElements.txtbox_TopicDiscussed(driver)).sendKeys(Keys.TAB);
+						
+					}
+					Thread.sleep(1000);
+					InsightsRow1Comment.get(0).sendKeys(feedbackFormData[0][1]);
+					
 				}
 				
 				
@@ -446,31 +499,31 @@ public class CancelLinkOnFeedback extends Commons {
 			
 	  }
 	
-/*@Test(priority=6)
+@Test(priority=7)
 	public void UserClicksonReplyandthenClicksonNotDiscussed() {
 		assertTrue(UserClicksonReplyandthenClicksonNotDiscussed);
 	}
-@Test(priority=6)
+@Test(priority=8)
 public void UserisabletoReplywithoutenteringMoreDeatils() {
 	assertTrue(UserisabletoReplywithoutenteringMoreDeatils);
 }
-@Test(priority=6)
+@Test(priority=8)
 		public void Answer_ReplyClick() {
 			assertTrue(Answer_ReplyClick);
 		}
-@Test(priority=6)
+@Test(priority=10)
 		public void Not_discussedClick() {
 			assertTrue(Not_discussedClick);
-		}*/
-@Test(priority=6)
+		}
+@Test(priority=11)
 	public void removeTopic() {
 		assertTrue(removeTopic);
 	}
-@Test(priority=7)
+@Test(priority=12)
 public void userIsAbletosubmitFormWithQuestion() {
 	assertTrue(userIsAbletosubmitFormWithQuestion);
 }
-@Test(priority=7)
+@Test(priority=13)
 public void FeedbackInsightsectionHideSowOnSelection() {
 	assertTrue(FeedbackInsightsection);
 }
